@@ -279,3 +279,27 @@ Class CloudflareZoneRatePlanComponent {
         $this.Price = $object.price
     }
 }
+
+Class CloudflareAccount {
+    [String]$ID
+    [String]$Name
+    [CloudflareAccountSettings]$Settings
+    [DateTime]$CreatedOn
+
+    CloudflareAccount([Object]$object) {
+        $this.ID = $object.id
+        $this.Name = $object.name
+        $this.Settings = $object.settings
+        $this.CreatedOn = $object.created_on
+    }
+}
+
+Class CloudflareAccountSettings {
+    [Bool]$EnforceTwoFactor
+    [Bool]$UseAccountCustomNSByDefault
+
+    CloudflareAccountSettings([Object]$object) {
+        $this.EnforceTwoFactor = $object.enforce_twofactor
+        $this.UseAccountCustomNSByDefault = $object.use_account_custom_ns_by_default
+    }
+}

@@ -6,6 +6,7 @@ https://api.cloudflare.com
 
 Current commands are:
 ```
+Get-CloudflareAccount
 Get-CloudflareDNSRecord
 Get-CloudflareZone
 Get-CloudflareZoneAvailablePlan
@@ -27,5 +28,6 @@ PS C:\> Get-CloudflareZone -Name im.tomohulk.com
 PS C:\> Get-CloudflareZone -Name im.tomohulk.com | Get-CloudflareDNSRecord -Proxied
 ```
 
+---
 
 More to come.
