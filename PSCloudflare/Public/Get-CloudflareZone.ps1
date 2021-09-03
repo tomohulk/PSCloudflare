@@ -41,7 +41,7 @@ Function Get-CloudflareZone {
     )
 
     Process {
-        $apiQuery = 'zones'
+        $endpoint = 'zones'
 
         if ($PSBoundParameters.Count -ne 0) {
             $parameterList = [Hashtable]$PSBoundParameters
@@ -73,10 +73,10 @@ Function Get-CloudflareZone {
                 )
             }
 
-            $apiQuery += Format-CloudflareQueryString -ParameterList $parameterList
+            $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
         }
 
-        $response = Invoke-CloudflareAPI -Method GET -APIQuery $apiQuery
+        $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
     }

@@ -20,9 +20,9 @@ Function Get-CloudflareZoneAvailabePlan {
     )
 
     Process {
-        $apiQuery = 'zones/{0}//available_plans' -f $Zone.ID
+        $endpoint = 'zones/{0}//available_plans' -f $Zone.ID
 
-        $response = Invoke-CloudflareAPI -Method GET -APIQuery $apiQuery
+        $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZonePlan' -RawResponse $RawResponse.IsPresent
     }

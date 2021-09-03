@@ -11,6 +11,7 @@ Get-CloudflareZone
 Get-CloudflareZoneAvailablePlan
 Get-CloudflareZoneAvailableRatePlan
 Get-CloudflareZoneSubscription
+New-CloudflareZone
 Set-CloudflareAPIToken
 ```
 
@@ -20,10 +21,10 @@ Set-CloudflareAPIToken
 PS C:\> Set-CloudflareAPIToken
 
 # Get a Zone.
-PS C:\> Get-CloudflareZone -Name me.tomohulk.com
+PS C:\> Get-CloudflareZone -Name im.tomohulk.com
 
 # Get the Proxied records from a Zone.
-PS C:\> Get-CloudflareZone -Name me.tomohulk.com | Get-CloudflareDNSRecord -Proxied
+PS C:\> Get-CloudflareZone -Name im.tomohulk.com | Get-CloudflareDNSRecord -Proxied
 ```
 
 

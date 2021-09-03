@@ -26,7 +26,11 @@ Function Invoke-CloudflareAPI {
             Mandatory = $true
         )]
         [String] 
-        $APIQuery
+        $Endpoint,
+
+        [Parameter()]
+        [String]
+        $Body
     )
 
     Begin {
@@ -53,7 +57,7 @@ Function Invoke-CloudflareAPI {
 
         $request = @{
             Headers = $Headers
-            Uri = 'https://api.cloudflare.com/client/v4/{0}' -f $APIQuery
+            Uri = 'https://api.cloudflare.com/client/v4/{0}' -f $Endpoint
             Method = $Method
             ErrorAction = 'Stop'
         }

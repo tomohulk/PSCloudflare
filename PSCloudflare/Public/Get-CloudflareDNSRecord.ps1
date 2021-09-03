@@ -50,17 +50,17 @@ Function Get-CloudflareDNSRecord {
     )
 
     Process {
-        $apiQuery = 'zones/{0}/dns_records' -f $Zone.ID
+        $endpoint = 'zones/{0}/dns_records' -f $Zone.ID
 
         if ($PSBoundParameters.Count -ne 0) {
             $parameterList = [Hashtable]$PSBoundParameters
             $parameterList.Remove(
                 'Zone'
             )
-            $apiQuery += Format-CloudflareQueryString -ParameterList $parameterList
+            $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
         }
 
-        $response = Invoke-CloudflareAPI -Method GET -APIQuery $apiQuery
+        $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareDNSRecord' -RawResponse $RawResponse.IsPresent
     }

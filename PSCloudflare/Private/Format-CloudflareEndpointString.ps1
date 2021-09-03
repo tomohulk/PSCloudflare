@@ -1,4 +1,4 @@
-Function Format-CloudflareQueryString {
+Function Format-CloudflareEndpointString {
 
     [CmdletBinding()]
     [OutputType(
