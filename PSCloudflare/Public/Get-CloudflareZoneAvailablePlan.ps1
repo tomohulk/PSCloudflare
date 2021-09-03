@@ -1,4 +1,4 @@
-Function Get-CloudflareZoneSubscription {
+Function Get-CloudflareZoneAvailabePlan {
 
     [CmdletBinding()]
     [OutputType()]
@@ -20,10 +20,10 @@ Function Get-CloudflareZoneSubscription {
     )
 
     Process {
-        $apiQuery = 'zones/{0}/subscription' -f $Zone.ID
+        $apiQuery = 'zones/{0}//available_plans' -f $Zone.ID
 
         $response = Invoke-CloudflareAPI -Method GET -APIQuery $apiQuery
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneSubscription' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZonePlan' -RawResponse $RawResponse.IsPresent
     }
 }

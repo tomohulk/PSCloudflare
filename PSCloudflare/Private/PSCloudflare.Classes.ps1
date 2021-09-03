@@ -8,11 +8,14 @@ Class CloudflareZone {
     [DateTime]$CreatedOn
     [DateTime]$ModifiedOn
     [Nullable[DateTime]]$ActivatedOn
-    [CloudflareOwner]$Owner
-    [CloudflareAccount]$Account
-    #[CloudFlarePermission[]]$Permissions
-    [CloudflarePlan]$Plan
-    [CloudflarePlan]$PlanPending
+    [String[]]$VanityNameServers
+    [String[]]$VanityNameServersIPs
+    [CloudflareZoneMeta]$Meta
+    [CloudflareZoneOwner]$Owner
+    [CloudflareZoneAccount]$Account
+    [String[]]$Permissions
+    [CloudflareZonePlan]$Plan
+    [CloudflareZonePlan]$PlanPending
     [String]$Status
     [Bool]$Paused
     [String]$Type
@@ -28,9 +31,12 @@ Class CloudflareZone {
         $this.CreatedOn = $object.created_on
         $this.ModifiedOn = $object.modified_on
         $this.ActivatedOn = $object.activated_on
+        $this.VanityNameServers = $object.vanity_name_servers
+        $this.VanityNameServersIPs = $object.vanity_name_servers_ips
+        $this.Meta = $object.meta
         $this.Owner = $object.owner
         $this.Account = $object.account
-        #$this.Permissions = $object.permissions
+        $this.Permissions = $object.permissions
         $this.Plan = $object.plan
         $this.PlanPending = $object.plan_pending
         $this.Status = $object.Status
@@ -40,45 +46,67 @@ Class CloudflareZone {
     }
 }
 
-Class CloudflareOwner {
+Class CloudflareZoneMeta {
+    [Int]$Step
+    [Bool]$WildcardProxiable
+    [Int]$CustomCertificateQuota
+    [Int]$PageRuleQuota
+    [Bool]$PhishingDetected
+    [Bool]$MultipuleRailgunsAllowed
+
+    CloudflareZoneMeta([Object]$object) {
+        $this.Step = $object.step
+        $this.WildcardProxiable = $object.wildcart_proxiable
+        $this.CustomCertificateQuota = $object.custom_certificate_quota
+        $this.PageRuleQuota = $object.page_rule_quota
+        $this.PhishingDetected = $object.phishing_detected
+        $this.MultipuleRailgunsAllowed = $object.multipule_railguns_allowed
+    }
+}
+
+Class CloudflareZoneOwner {
     [String]$ID
     [String]$Name
 
-    CloudflareOwner([Object]$object) {
+    CloudflareZoneOwner([Object]$object) {
         $this.ID = $object.id
         $this.Name = $object.name
     }
 }
 
-Class CloudflareAccount {
+Class CloudflareZoneAccount {
     [String]$ID
     [String]$Name
 
-    CloudflareAccount([Object]$object) {
+    CloudflareZoneAccount([Object]$object) {
         $this.ID = $object.id
         $this.Name = $object.name
     }
 }
 
-Class CloudflarePlan {
+Class CloudflareZonePlan {
     [String]$ID
     [String]$Name
     [Int]$Price
     [String]$Currency
     [String]$Frequency
     [String]$LegacyID
+    [Bool]$LegacyDiscount
     [Bool]$IsSubscribed
     [Bool]$CanSubscribe
+    [Bool]$ExternallyManaged
 
-    CloudflarePlan([Object]$object) {
+    CloudflareZonePlan([Object]$object) {
         $this.ID = $object.id
         $this.Name = $object.name
         $this.Price = $object.price
         $this.Currency = $object.currency
         $this.Frequency = $object.frequency
         $this.LegacyID = $object.legacy_id
+        $this.LegacyDiscount = $object.legacy_discount
         $this.IsSubscribed = $object.is_subscribed
         $this.CanSubscribe = $object.can_subscribe
+        $this.ExternallyManaged = $object.exteranlly_managed
     }
 }
 
@@ -130,13 +158,13 @@ Class CloudflareDNSRecordMeta {
 
 Class CloudflareZoneSubscription {
     [String]$ID
-    [CloudflareProduct]$Product
-    [CloudflareRatePlan]$RatePlan
-    [CloudflareComponent[]]$ComponentValues
+    [CloudflareSubscriptionProduct]$Product
+    [CloudflareSubscriptionRatePlan]$RatePlan
+    [CloudflareSubscriptionComponent[]]$ComponentValues
     [CloudflareSubscriptionZoneDetails]$Zone
     [String]$Frequency
     [String]$Currency
-    [CloudflareApp]$App
+    [CloudflareSubscriptionApp]$App
     [Bool]$Entitled
     [Bool]$CancelAtPeriodEnd
 
@@ -154,14 +182,14 @@ Class CloudflareZoneSubscription {
     }
 }
 
-Class CloudflareProduct {
+Class CloudflareSubscriptionProduct {
     [String]$Name
     [Object]$Period
     [Object]$Billing
     [String]$PublicName
     [Int]$Duration
 
-    CloudflareProduct([Object]$object) {
+    CloudflareSubscriptionProduct([Object]$object) {
         $this.Name = $object.name
         $this.Period = $object.period
         $this.Billing = $object.billing
@@ -170,7 +198,7 @@ Class CloudflareProduct {
     }
 }
 
-Class CloudflareRatePlan {
+Class CloudflareSubscriptionRatePlan {
     [String]$ID
     [String]$PublicName
     [String]$Currency
@@ -179,7 +207,7 @@ Class CloudflareRatePlan {
     [Bool]$IsContract
     [Bool]$ExternallyManaged
 
-    CloudflareRatePlan([Object]$object) {
+    CloudflareSubscriptionRatePlan([Object]$object) {
         $this.ID = $object.id
         $this.PublicName = $object.public_name
         $this.Currency = $object.currency
@@ -190,13 +218,13 @@ Class CloudflareRatePlan {
     }
 }
 
-Class CloudflareComponent {
+Class CloudflareSubscriptionComponent {
     [String]$Name
     [Int]$Value
     [Int]$Default
     [Int]$Price
 
-    CloudflareComponent([Object]$object) {
+    CloudflareSubscriptionComponent([Object]$object) {
         $this.Name = $object.name
         $this.Value = $object.value
         $this.Default = $object.default
@@ -214,10 +242,40 @@ Class CloudflareSubscriptionZoneDetails {
     }
 }
 
-Class CloudflareApp {
+Class CloudflareSubscriptionApp {
     [String]$InstallID
 
-    CloudflareApp([Object]$object) {
+    CloudflareSubscriptionApp([Object]$object) {
         $this.InstallID = $object.install_id
+    }
+}
+
+Class CloudflareZoneRatePlan {
+    [String]$ID
+    [String]$Name
+    [String]$Currency
+    [Int]$Duration
+    [String]$Frequency
+    [CloudflareZoneRatePlanComponent[]]$Components
+
+    CloudflareZoneRatePlan([Object]$object) {
+        $this.ID = $object.id
+        $this.Name = $object.name
+        $this.Currency = $object.currency
+        $this.Duration = $object.duration
+        $this.Frequency = $object.frequency
+        $this.Components = $object.components
+    }
+}
+
+Class CloudflareZoneRatePlanComponent {
+    [String]$Name
+    [Int]$Default
+    [Int]$Price
+
+    CloudflareZoneRatePlanComponent([Object]$object) {
+        $this.Name = $object.name
+        $this.Default = $object.default
+        $this.Price = $object.price
     }
 }
