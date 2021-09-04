@@ -1,4 +1,4 @@
-Function Get-CloudflareDNSRecord {
+Function Get-CloudflareZoneDNSRecord {
 
     [CmdletBinding()]
     [OutputType()]
@@ -30,10 +30,7 @@ Function Get-CloudflareDNSRecord {
         [Parameter(
             HelpMessage = 'Return DNS Record by its record type.'
         )]
-        [ValidateSet(
-            'A', 'AAAA', 'CNAME', 'HTTPS', 'TXT', 'SRV', 'LOC', 'MX', 'NS', 'SPF', 'CERT', 'DNSKEY', 'DS', 'NAPTR', 'SMIMEA', 'SSHFP', 'SVCB', 'TLSA', 'URI'
-        )]
-        [String]
+        [CloudflareZoneDNSRecordType]
         $Type,
 
         [Parameter(
@@ -62,6 +59,6 @@ Function Get-CloudflareDNSRecord {
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareDNSRecord' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
     }
 }

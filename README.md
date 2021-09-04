@@ -7,13 +7,13 @@ https://api.cloudflare.com
 Current commands are:
 ```
 Get-CloudflareAccount
-Get-CloudflareDNSRecord
 Get-CloudflareZone
 Get-CloudflareZoneAvailablePlan
 Get-CloudflareZoneAvailableRatePlan
+Get-CloudflareZoneDNSRecord
 Get-CloudflareZoneSubscription
 New-CloudflareZone
-Set-CloudflareAPIToken
+New-CloudflareZoneDNSRecord
 ```
 
 ```

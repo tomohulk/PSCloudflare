@@ -12,10 +12,7 @@ Function Get-CloudflareZone {
         $Name,
 
         [Parameter()]
-        [ValidateSet(
-            'Active', 'Pending', 'Initalizing', 'Moved', 'Deleted', 'Deactivted'
-        )]
-        [String]
+        [CloudflareZoneStatus]
         $Status,
 
         [Parameter()]

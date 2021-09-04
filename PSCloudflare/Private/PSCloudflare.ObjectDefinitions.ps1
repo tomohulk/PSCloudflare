@@ -1,3 +1,43 @@
+#region Enums
+Enum CloudflareZoneType {
+    Full
+    Partial
+}
+
+Enum CloudflareZoneStatus {
+    Active
+    Pending
+    Initalizing
+    Moved
+    Deleted
+    Deactivted
+}
+
+Enum CloudflareZoneDNSRecordType {
+    A
+    AAAA
+    CNAME
+    HTTPS
+    TXT
+    SRV
+    LOC
+    MX
+    NS
+    SPF
+    CERT
+    DNSKEY
+    DS
+    NAPTR
+    SMIMEA
+    SSHFP
+    SVCB
+    TLSA
+    URI
+}
+#endregion Enums
+
+
+#region Classes
 Class CloudflareZone {
     [String]$ID
     [String]$Name
@@ -16,9 +56,9 @@ Class CloudflareZone {
     [String[]]$Permissions
     [CloudflareZonePlan]$Plan
     [CloudflareZonePlan]$PlanPending
-    [String]$Status
+    [CloudflareZoneStatus]$Status
     [Bool]$Paused
-    [String]$Type
+    [CloudflareZoneType]$Type
     [String[]]$NameServers
 
     CloudflareZone([Object]$object) {
@@ -110,22 +150,22 @@ Class CloudflareZonePlan {
     }
 }
 
-Class CloudflareDNSRecord {
+Class CloudflareZoneDNSRecord {
     [String]$ID
-    [String]$Type
+    [CloudflareZoneDNSRecordType]$Type
     [String]$Name
     [String]$Content
     [Bool]$Proxiable
     [Bool]$Proxied
     [Int]$TTL
     [Bool]$Locked
-    [CloudflareDNSRecordMeta]$Meta
+    [CloudflareZoneDNSRecordMeta]$Meta
     [String]$ZoneID
     [String]$ZoneName
     [DateTime]$CreatedOn
     [DateTime]$ModifiedOn
 
-    CloudflareDNSRecord([Object]$object) {
+    CloudflareZoneDNSRecord([Object]$object) {
         $this.ID = $object.id
         $this.Type = $object.type
         $this.Name = $object.name
@@ -142,13 +182,13 @@ Class CloudflareDNSRecord {
     }
 }
 
-Class CloudflareDNSRecordMeta {
+Class CloudflareZoneDNSRecordMeta {
     [Bool]$AutoAdded
     [Bool]$ManagedByApps
     [Bool]$ManagedByArgoTunnel
     [String]$Source
 
-    CloudflareDNSRecordMeta([Object]$object) {
+    CloudflareZoneDNSRecordMeta([Object]$object) {
         $this.AutoAdded = $object.auto_added
         $this.ManagedByApps = $object.managed_by_apps
         $this.ManagedByArgoTunnel = $object.managed_by_argo_tunnel
@@ -303,3 +343,4 @@ Class CloudflareAccountSettings {
         $this.UseAccountCustomNSByDefault = $object.use_account_custom_ns_by_default
     }
 }
+#endregion Classes

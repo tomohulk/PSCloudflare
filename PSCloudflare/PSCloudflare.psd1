@@ -58,7 +58,7 @@ PowerShellVersion = '5.1'
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
 ScriptsToProcess = @(
-    'Private\PSCloudflare.Classes.ps1'
+    'Private\PSCloudflare.ObjectDefinitions.ps1'
 )
 
 # Type files (.ps1xml) to be loaded when importing this module
@@ -73,12 +73,13 @@ ScriptsToProcess = @(
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
     'Get-CloudflareAccount',
-    'Get-CloudflareDNSRecord',
     'Get-CloudflareZone',
     'Get-CloudflareZoneAvailablePlan',
     'Get-CloudflareZoneAvailableRatePlan',
+    'Get-CloudflareZoneDNSRecord',
     'Get-CloudflareSubscription',
-    'New-CloudflareZone'
+    'New-CloudflareZone',
+    'New-CloudflareZoneDNSRecord'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -100,13 +101,13 @@ FunctionsToExport = @(
 FileList = @(
     'Private\Format-CloudflareEndpointString.ps1',
     'Private\Invoke-CloudflareAPI.ps1',
-    'Private\PSCloudflare.Classes.ps1',
+    'Private\PSCloudflare.ObjectDefinitions.ps1',
     'Private\Write-CloudflareResponse.ps1',
     'Public\Get-CloudflareAccount.ps1'
-    'Public\Get-CloudflareDNSRecord.ps1',
     'Public\Get-CloudflareZone.ps1',
     'Public\Get-CloudflareZoneAvailablePlan.ps1',
     'Public\Get-CloudflareZoneAvailableRatePlan.ps1',
+    'Public\Get-CloudflareZoneDNSRecord.ps1',
     'Public\Get-CloudflareSubscription.ps1',
     'Public\New-CloudflareZone.ps1',
     'PSCloudflare.psd1',

@@ -22,10 +22,7 @@ Function New-CloudflareZone {
         $JumpStart,
 
         [Parameter()]
-        [ValidateSet(
-            'Full', 'Partial'
-        )]
-        [String]
+        [CloudflareZoneType]
         $Type = 'Full',
 
         [Parameter()]
