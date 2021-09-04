@@ -7,6 +7,14 @@ Function Invoke-CloudflareAPI {
     [OutputType()]
 
     Param (
+        [Parameter()]
+        [String]
+        $Email = $env:CloudflareEmail,
+
+        [Parameter()]
+        [String]
+        $APIKey = $env:ClouldflareAPIKey,
+
         [Parameter(
             Mandatory = $false
         )]
@@ -34,22 +42,11 @@ Function Invoke-CloudflareAPI {
     )
 
     Begin {
-        try {
-            [Void][Windows.Security.Credentials.PasswordVault,Windows.Security.Credentials,ContentType=WindowsRuntime]
-            
-            $vault = New-Object -TypeName Windows.Security.Credentials.PasswordVault -ErrorAction Stop
-            $email = $vault.FindAllByResource('https://api.cloudflare.com').username
-            $password = $vault.Retrieve('https://api.cloudflare.com', $email).password
-        } catch {
-            Write-Error -Message 'There is no valid Cloudflare API Token stored in the Windows Credential Manager.  Please use the Set-CloudflareAPIToken function to configure an API token.'
-            return
-        }
-
         $Headers.Add(
-            'X-Auth-Email', $email
+            'X-Auth-Email', $Email
         )
         $Headers.Add(
-            'X-Auth-Key', $password
+            'X-Auth-Key', $APIKey
         )
         $Headers.Add(
             'Content-type', 'application/json'
@@ -74,9 +71,5 @@ Function Invoke-CloudflareAPI {
 
     Process {}
 
-    End {
-        Remove-Variable -Name email, password -Force -Confirm:$false
-
-        [GC]::Collect()
-    }
+    End { }
 }

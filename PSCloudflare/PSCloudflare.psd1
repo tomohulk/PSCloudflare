@@ -33,7 +33,7 @@ Copyright = '(c) Thomas Malkewitz @tomohulk. All rights reserved.'
 Description = 'PowerShell Wrapper for the Cloudflare API.'
 
 # Minimum version of the PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '5.1'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -71,16 +71,24 @@ ScriptsToProcess = @(
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @()
+FunctionsToExport = @(
+    'Get-CloudflareAccount',
+    'Get-CloudflareDNSRecord',
+    'Get-CloudflareZone',
+    'Get-CloudflareZoneAvailablePlan',
+    'Get-CloudflareZoneAvailableRatePlan',
+    'Get-CloudflareSubscription',
+    'New-CloudflareZone'
+)
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = @()
+# CmdletsToExport = @()
 
 # Variables to export from this module
-VariablesToExport = '*'
+# VariablesToExport = '*'
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = @()
+# AliasesToExport = @()
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -89,7 +97,21 @@ AliasesToExport = @()
 # ModuleList = @()
 
 # List of all files packaged with this module
-# FileList = @()
+FileList = @(
+    'Private\Format-CloudflareEndpointString.ps1',
+    'Private\Invoke-CloudflareAPI.ps1',
+    'Private\PSCloudflare.Classes.ps1',
+    'Private\Write-CloudflareResponse.ps1',
+    'Public\Get-CloudflareAccount.ps1'
+    'Public\Get-CloudflareDNSRecord.ps1',
+    'Public\Get-CloudflareZone.ps1',
+    'Public\Get-CloudflareZoneAvailablePlan.ps1',
+    'Public\Get-CloudflareZoneAvailableRatePlan.ps1',
+    'Public\Get-CloudflareSubscription.ps1',
+    'Public\New-CloudflareZone.ps1',
+    'PSCloudflare.psd1',
+    'PSCloudflare.psm1'
+)
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{

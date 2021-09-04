@@ -17,9 +17,10 @@ Set-CloudflareAPIToken
 ```
 
 ```
-# Set your API key, this is stored an retrieved from the Windows Credential Vault when API calls are executed.
-# This only needs to be done once.
-PS C:\> Set-CloudflareAPIToken
+# Set your credentials as environment variables.
+# This needs to be done every time you start your shell and are using the PSCloudflare module.
+PS C:\> $env:CloudflareEmail = 'tomohulk@github.io'
+PS C:\> $env:CloudflareAPIKey = 'c2547eb745079dac9320b638f5e225cf483cc5cfdda41'
 
 # Get a Zone.
 PS C:\> Get-CloudflareZone -Name im.tomohulk.com
