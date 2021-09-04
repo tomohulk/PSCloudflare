@@ -38,10 +38,10 @@ Function Invoke-CloudflareAPI {
 
         [Parameter()]
         [String]
-        $Body
+        $Data = $null
     )
 
-    Begin {
+    Process {
         $Headers.Add(
             'X-Auth-Email', $Email
         )
@@ -56,6 +56,7 @@ Function Invoke-CloudflareAPI {
             Headers = $Headers
             Uri = 'https://api.cloudflare.com/client/v4/{0}' -f $Endpoint
             Method = $Method
+            Body = $Data
             ErrorAction = 'Stop'
         }
 
@@ -68,8 +69,4 @@ Function Invoke-CloudflareAPI {
             return
         }
     }
-
-    Process {}
-
-    End { }
 }

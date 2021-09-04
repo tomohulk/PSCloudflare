@@ -51,7 +51,7 @@ Function New-CloudflareZoneDNSRecord {
     Process {
         $endpoint = 'zones/{0}/dns_records' -f $Zone.ID
 
-        $body = ConvertTo-Json -InputObject (@{
+        $data = ConvertTo-Json -InputObject (@{
             Type = $Type
             Name = $Name
             Content = $Content
@@ -60,7 +60,7 @@ Function New-CloudflareZoneDNSRecord {
             Proxied = $Proxied.IsPresent
         })
 
-        $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Body $body
+        $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 
         if ($Passthru.IsPresent) {
             Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent

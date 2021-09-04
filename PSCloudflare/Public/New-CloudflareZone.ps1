@@ -38,7 +38,7 @@ Function New-CloudflareZone {
         foreach ($item in $Name) {
             $endpoint = 'zones'
             
-            $body = ConvertTo-Json -InputObject (@{
+            $data = ConvertTo-Json -InputObject (@{
                 Name = $item
                 Account = @{
                     ID = $AccountID
@@ -47,7 +47,7 @@ Function New-CloudflareZone {
                 Type = $Type
             })
 
-            $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Body $body
+            $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 
             if ($Passthru.IsPresent) {
                 Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
