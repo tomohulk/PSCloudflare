@@ -45,7 +45,15 @@ Function New-CloudflareZoneDNSRecord {
 
         [Parameter()]
         [Switch]
-        $Proxied
+        $Proxied,
+
+        [Parameter()]
+        [Switch]
+        $Passthru,
+
+        [Parameter()]
+        [Switch]
+        $RawResponse
     )
 
     Process {

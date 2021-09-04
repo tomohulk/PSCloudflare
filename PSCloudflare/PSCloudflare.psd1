@@ -79,7 +79,8 @@ FunctionsToExport = @(
     'Get-CloudflareZoneDNSRecord',
     'Get-CloudflareSubscription',
     'New-CloudflareZone',
-    'New-CloudflareZoneDNSRecord'
+    'New-CloudflareZoneDNSRecord',
+    'Set-CloudflareZone'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -110,6 +111,8 @@ FileList = @(
     'Public\Get-CloudflareZoneDNSRecord.ps1',
     'Public\Get-CloudflareSubscription.ps1',
     'Public\New-CloudflareZone.ps1',
+    'Public\New-CloudflareZoneDNSRecord.ps1',
+    'Public\Set-CloudflareZone.ps1',
     'PSCloudflare.psd1',
     'PSCloudflare.psm1'
 )

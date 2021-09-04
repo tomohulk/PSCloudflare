@@ -1,9 +1,6 @@
 Function Invoke-CloudflareAPI {
     
-    [CmdletBinding(
-        ConfirmImpact = 'Low',
-        SupportsShouldProcess = $true
-    )]
+    [CmdletBinding()]
     [OutputType()]
 
     Param (
@@ -61,9 +58,7 @@ Function Invoke-CloudflareAPI {
         }
 
         try {
-            if ($PSCmdlet.ShouldProcess($request)) {
                 Invoke-RestMethod @request
-            }
         } catch {
             $_
             return
