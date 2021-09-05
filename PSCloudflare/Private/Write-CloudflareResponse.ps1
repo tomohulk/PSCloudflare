@@ -12,7 +12,7 @@ Function Write-CloudflareResponse {
         [String]
         $CloudflareObjectType,
 
-        [Parameter()]
+        [Parameter( Mandatory = $true )]
         [Bool]
         $RawResponse
     )

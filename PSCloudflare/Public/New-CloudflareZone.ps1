@@ -20,7 +20,7 @@ Function New-CloudflareZone {
         [CloudflareZoneType]
         $Type = 'Full',
 
-        [Parameter()]
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
         [Switch]
         $RawResponse
     )

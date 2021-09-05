@@ -8,7 +8,7 @@ Function Remove-CloudflareZoneDNSRecord {
         [CloudflareZoneDNSRecord]
         $ZoneDNSRecord,
 
-        [Parameter()]
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
         [Switch]
         $RawResponse
     )

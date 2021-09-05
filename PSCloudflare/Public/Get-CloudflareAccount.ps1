@@ -8,7 +8,7 @@ Function Get-CloudflareAccount {
         [String]
         $ID,
 
-        [Parameter()]
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
         [Switch]
         $RawResponse
     )
