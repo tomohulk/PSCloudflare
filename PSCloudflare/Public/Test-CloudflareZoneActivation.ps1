@@ -16,7 +16,7 @@ Function Test-CloudflareZoneActivation {
     Process {
         $endpoint = 'zones/{0}/activation_check' -f $Zone.ID
 
-        $respose = Invoke-CloudflareAPI -Method PUT -Endpont $endpoint
+        $response = Invoke-CloudflareAPI -Method PUT -Endpont $endpoint
 
         Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
     }
