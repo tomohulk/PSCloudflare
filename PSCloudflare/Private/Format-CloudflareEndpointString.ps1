@@ -1,14 +1,10 @@
 Function Format-CloudflareEndpointString {
 
     [CmdletBinding()]
-    [OutputType(
-        [String]
-    )]
+    [OutputType( [String] )]
 
     Param (
-        [Parameter(
-            Mandatory = $true
-        )]
+        [Parameter( Mandatory = $true )]
         [Hashtable]
         $ParameterList
     )

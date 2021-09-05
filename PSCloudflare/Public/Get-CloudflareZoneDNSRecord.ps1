@@ -12,36 +12,24 @@ Function Get-CloudflareZoneDNSRecord {
         [CloudflareZone]
         $Zone,
 
-        [Parameter(
-            HelpMessage = 'Return a DNS Record by a specified name.'
-        )]
-        [ValidateLength(
-            0, 255
-        )]
+        [Parameter( HelpMessage = 'Return a DNS Record by a specified name.' )]
+        [ValidateLength( 0, 255 )]
         [String]
         $Name,
 
-        [Parameter(
-            HelpMessage = 'Return DNS Record by its content value.'
-        )]
+        [Parameter( HelpMessage = 'Return DNS Record by its content value.' )]
         [String]
         $Content,
 
-        [Parameter(
-            HelpMessage = 'Return DNS Record by its record type.'
-        )]
+        [Parameter( HelpMessage = 'Return DNS Record by its record type.' )]
         [CloudflareZoneDNSRecordType]
         $Type,
 
-        [Parameter(
-            HelpMessage = 'Return DNS Record that is proxy enabled.'
-        )]
+        [Parameter( HelpMessage = 'Return DNS Record that is proxy enabled.' )]
         [Switch]
         $Proxied,
 
-        [Parameter(
-            HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.'
-        )]
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
         [Switch]
         $RawResponse
     )

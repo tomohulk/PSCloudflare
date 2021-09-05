@@ -5,9 +5,8 @@ Function Get-CloudflareZone {
 
     Param (
         [Parameter()]
-        [Alias(
-            'Hostname'
-        )]
+        [Alias( 'Hostname' )]
+        [ValidateLength(0, 253)]
         [String]
         $Name,
 
@@ -16,22 +15,16 @@ Function Get-CloudflareZone {
         $Status,
 
         [Parameter()]
-        [ValidateLength(
-            0, 100
-        )]
+        [ValidateLength( 0, 100 )]
         [String]
         $AccountName,
 
         [Parameter()]
-        [ValidateLength(
-            0, 32
-        )]
+        [ValidateLength( 0, 32 )]
         [String]
         $AccountID,
 
-        [Parameter(
-            HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.'
-        )]
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
         [Switch]
         $RawResponse
 

@@ -4,31 +4,20 @@ Function New-CloudflareZoneDNSRecord {
     [OutputType()]
 
     Param (
-        [Parameter(
-            HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.',
-            Mandatory = $true
-        )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true )]
         [CloudflareZone]
         $Zone,
 
-        [Parameter(
-            Mandatory = $true
-        )]
+        [Parameter( Mandatory = $true )]
         [CloudflareZoneDNSRecordType]
         $Type,
 
-        [Parameter(
-            Mandatory = $true
-        )]
-        [ValidateLength(
-            0, 255
-        )]
+        [Parameter( Mandatory = $true )]
+        [ValidateLength( 0, 255 )]
         [String]
         $Name,
 
-        [Parameter(
-            Mandatory = $true
-        )]
+        [Parameter( Mandatory = $true )]
         [String]
         $Content,
 
@@ -37,9 +26,7 @@ Function New-CloudflareZoneDNSRecord {
         $TTL = 1,
 
         [Parameter()]
-        [ValidateRange(
-            0, 65535
-        )]
+        [ValidateRange( 0, 65535 )]
         [Int]
         $Priority = 10,
 

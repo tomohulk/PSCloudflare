@@ -1,15 +1,10 @@
 Function Set-CloudflareZone {
 
-    [CmdletBinding(
-        ConfirmImpact = 'Medium'
-    )]
+    [CmdletBinding( ConfirmImpact = 'Medium' )]
     [OutputType()]
 
     Param (
-        [Parameter(
-            HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.',
-            Mandatory = $true
-        )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true )]
         [CloudflareZone]
         $Zone,
 

@@ -4,15 +4,11 @@ Function Write-CloudflareResponse {
     [OutputType()]
 
     Param (
-        [Parameter(
-            Mandatory = $true
-        )]
+        [Parameter( Mandatory = $true )]
         [PSCustomObject]
         $Response,
 
-        [Parameter(
-            Mandatory = $true
-        )]
+        [Parameter( Mandatory = $true )]
         [String]
         $CloudflareObjectType,
 
@@ -26,9 +22,7 @@ Function Write-CloudflareResponse {
             if ($RawResponse) {
                 Write-Output -InputObject $result
             } else {
-                $returnValue = ($CloudflareObjectType -as [Type])::new(
-                    $result
-                )
+                $returnValue = ($CloudflareObjectType -as [Type])::new( $result )
 
                 Write-Output -InputObject $returnValue
             }

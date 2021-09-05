@@ -1,28 +1,19 @@
 Function Set-CloudflareZoneDNSRecord {
 
-    [CmdletBinding(
-        ConfirmImpact = 'Medium'
-    )]
+    [CmdletBinding( ConfirmImpact = 'Medium' )]
     [OutputType()]
 
     Param (
-        [Parameter(
-            HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.',
-            Mandatory = $true
-        )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.', Mandatory = $true )]
         [CloudflareZoneDNSRecord]
         $ZoneDNSRecord,
 
-        [Parameter(
-            Mandatory = $true
-        )]
+        [Parameter( Mandatory = $true )]
         [CloudflareZoneDNSRecordType]
         $Type,
         
         [Parameter()]
-        [ValidateLength(
-            0, 255
-        )]
+        [ValidateLength( 0, 255 )]
         [String]
         $Name,
 
@@ -35,9 +26,7 @@ Function Set-CloudflareZoneDNSRecord {
         $TTL = 1,
 
         [Parameter()]
-        [ValidateRange(
-            0, 65535
-        )]
+        [ValidateRange( 0, 65535 )]
         [Int]
         $Priority = 10,
 

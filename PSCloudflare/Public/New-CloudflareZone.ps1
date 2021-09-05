@@ -4,16 +4,11 @@ Function New-CloudflareZone {
     [OutputType()]
 
     Param (
-        [Parameter(
-            Mandatory = $true,
-            ValueFromPipeline = $true
-        )]
+        [Parameter( Mandatory = $true, ValueFromPipeline = $true )]
         [String[]]
         $Name,
 
-        [Parameter(
-            Mandatory = $true
-        )]
+        [Parameter( Mandatory = $true )]
         [CloudflareAccount]
         $Account,
 

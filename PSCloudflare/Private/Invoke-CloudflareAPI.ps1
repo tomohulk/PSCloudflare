@@ -12,24 +12,16 @@ Function Invoke-CloudflareAPI {
         [String]
         $APIKey = $env:ClouldflareAPIKey,
 
-        [Parameter(
-            Mandatory = $false
-        )]
+        [Parameter( Mandatory = $false )]
         [HashTable] 
         $Headers = @{},
         
-        [Parameter(
-            Mandatory = $true
-        )]
-        [ValidateSet(
-            "GET", "POST", "PUT", "PATCH", "DELETE"
-        )]
+        [Parameter( Mandatory = $true )]
+        [ValidateSet( 'GET', 'POST', 'PUT', 'PATCH', 'DELETE' )]
         [String] 
         $Method,
 
-        [Parameter(
-            Mandatory = $true
-        )]
+        [Parameter( Mandatory = $true )]
         [String] 
         $Endpoint,
 

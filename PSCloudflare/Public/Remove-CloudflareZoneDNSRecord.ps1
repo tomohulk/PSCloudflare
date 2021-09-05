@@ -1,16 +1,10 @@
 Function Remove-CloudflareZoneDNSRecord {
 
-    [CmdletBinding(
-        ConfirmImpact = 'High'
-    )]
+    [CmdletBinding( ConfirmImpact = 'High' )]
     [OutputTYpe()]
 
     Param (
-        [Parameter(
-            HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.',
-            Mandatory = $true,
-            ValueFromPipeline = $true
-        )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.', Mandatory = $true, ValueFromPipeline = $true )]
         [CloudflareZoneDNSRecord]
         $ZoneDNSRecord,
 

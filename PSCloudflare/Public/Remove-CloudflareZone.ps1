@@ -1,16 +1,10 @@
 Function Remove-CloudflareZone {
 
-    [CmdletBinding(
-        ConfirmImpact = 'High'
-    )]
+    [CmdletBinding( ConfirmImpact = 'High' )]
     [OutputType()]
 
     Param (
-        [Parameter(
-            HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.',
-            Mandatory = $true,
-            ValueFromPipeline
-        )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline )]
         [CloudflareZone]
         $Zone
     )

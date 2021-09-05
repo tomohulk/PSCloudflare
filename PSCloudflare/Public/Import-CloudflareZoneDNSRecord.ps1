@@ -4,17 +4,11 @@ Function Import-CloudflareZoneDNSRecord {
     [OutputType()]
 
     Param (
-        [Parameter(
-            HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.',
-            Mandatory = $true
-        )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true )]
         [CloudflareZone]
         $Zone,
 
-        [Parameter(
-            Mandatory = $true,
-            ValueFromPipeline = $true
-        )]
+        [Parameter( Mandatory = $true, ValueFromPipeline = $true )]
         [String[]]
         $FilePath,
 
