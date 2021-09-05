@@ -343,4 +343,20 @@ Class CloudflareAccountSettings {
         $this.UseAccountCustomNSByDefault = $object.use_account_custom_ns_by_default
     }
 }
+
+Class CloudflareOrganization {
+    [String]$ID
+    [String]$Name
+    [String]$Status
+    [String[]]$Permissions
+    [String[]]$Roles
+
+    CloudflareOrganization([Object]$object) {
+        $this.ID = $object.id
+        $this.Name = $object.name
+        $this.Status = $object.status
+        $this.Permissions = $object.permissions
+        $this.Roles = $object.Roles
+    }
+}
 #endregion Classes

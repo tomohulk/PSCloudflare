@@ -5,7 +5,7 @@ Function Write-CloudflareResponse {
 
     Param (
         [Parameter( Mandatory = $true )]
-        [PSCustomObject]
+        [PSCustomObject[]]
         $Response,
 
         [Parameter( Mandatory = $true )]

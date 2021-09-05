@@ -74,6 +74,7 @@ ScriptsToProcess = @(
 FunctionsToExport = @(
     'Export-CloudflareZoneDNSRecord',
     'Get-CloudflareAccount',
+    'Get-CloudflareOrganization',
     'Get-CloudflareZone',
     'Get-CloudflareZoneAvailablePlan',
     'Get-CloudflareZoneAvailableRatePlan',
@@ -110,7 +111,8 @@ FileList = @(
     'Private\PSCloudflare.ObjectDefinitions.ps1',
     'Private\Write-CloudflareResponse.ps1',
     'Public\Export-CloudflareZoneDNSRecord.ps1',
-    'Public\Get-CloudflareAccount.ps1'
+    'Public\Get-CloudflareAccount.ps1',
+    'PUblic\Get-CloudflareOrganization.ps1',
     'Public\Get-CloudflareZone.ps1',
     'Public\Get-CloudflareZoneAvailablePlan.ps1',
     'Public\Get-CloudflareZoneAvailableRatePlan.ps1',

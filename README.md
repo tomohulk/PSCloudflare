@@ -8,6 +8,7 @@ Current commands are:
 ```
 Export-CloudflareZoneDNSRecord
 Get-CloudflareAccount
+Get-CloudflareOrganization
 Get-CloudflareZone
 Get-CloudflareZoneAvailablePlan
 Get-CloudflareZoneAvailableRatePlan
