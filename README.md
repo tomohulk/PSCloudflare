@@ -12,6 +12,7 @@ Get-CloudflareZoneAvailablePlan
 Get-CloudflareZoneAvailableRatePlan
 Get-CloudflareZoneDNSRecord
 Get-CloudflareZoneSubscription
+Import-CloudflareZoneDNSRecord
 New-CloudflareZone
 New-CloudflareZoneDNSRecord
 Set-CloudflareZone

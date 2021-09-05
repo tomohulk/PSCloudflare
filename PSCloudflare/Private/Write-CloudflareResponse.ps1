@@ -24,7 +24,7 @@ Function Write-CloudflareResponse {
     if ($Response.success) {
         foreach ($result in $Response.result) {
             if ($RawResponse) {
-                Write-Output $result
+                Write-Output -InputObject $result
             } else {
                 $returnValue = ($CloudflareObjectType -as [Type])::new(
                     $result

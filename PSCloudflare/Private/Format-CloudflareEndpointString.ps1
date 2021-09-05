@@ -13,6 +13,10 @@ Function Format-CloudflareEndpointString {
         $ParameterList
     )
 
+    if ($ParameterList.ContainsKey( 'RawResponse' )) {
+        $ParameterList.Remove( 'RawResponse' )
+    }
+    
     $queryString += '?'
 
     foreach ($item in $ParameterList.GetEnumerator()) {

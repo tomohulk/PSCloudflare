@@ -49,11 +49,11 @@ Function Get-CloudflareZoneDNSRecord {
     Process {
         $endpoint = 'zones/{0}/dns_records' -f $Zone.ID
 
-        if ($PSBoundParameters.Count -ne 0) {
+        if (($PSBoundParameters.GetEnumerator().Where({ $_.Key -ne 'RawResponse' })).Count -ne 0) {
             $parameterList = [Hashtable]$PSBoundParameters
-            $parameterList.Remove(
-                'Zone'
-            )
+
+            $parameterList.Remove( 'Zone' )
+            
             $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
         }
 

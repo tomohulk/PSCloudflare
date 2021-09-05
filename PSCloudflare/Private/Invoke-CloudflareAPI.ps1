@@ -35,26 +35,31 @@ Function Invoke-CloudflareAPI {
 
         [Parameter()]
         [String]
-        $Data = $null
+        $Data,
+
+        [Parameter()]
+        [String]
+        $Form
     )
 
     Process {
-        $Headers.Add(
-            'X-Auth-Email', $Email
-        )
-        $Headers.Add(
-            'X-Auth-Key', $APIKey
-        )
-        $Headers.Add(
-            'Content-type', 'application/json'
-        )
+        $Headers.Add( 'X-Auth-Email', $Email )
+        $Headers.Add( 'X-Auth-Key', $APIKey )
+        $Headers.Add( 'Content-type', 'application/json' )
 
         $request = @{
             Headers = $Headers
             Uri = 'https://api.cloudflare.com/client/v4/{0}' -f $Endpoint
             Method = $Method
-            Body = $Data
             ErrorAction = 'Stop'
+        }
+
+        if ($PSBoundParameters.ContainsKey( 'Body' )) {
+            $request.Add( 'Body', $Data )
+        }
+
+        if ($PSBoundParameters.ContainsKey( 'Form' )) {
+            $request.Add( 'Form', $Form )
         }
 
         try {
