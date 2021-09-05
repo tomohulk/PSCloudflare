@@ -15,13 +15,13 @@ Get-CloudflareZoneAvailableRatePlan
 Get-CloudflareZoneDNSRecord
 Get-CloudflareZoneSubscription
 Import-CloudflareZoneDNSRecord
+Invoke-CloudflareZoneActivation
 New-CloudflareZone
 New-CloudflareZoneDNSRecord
 Remove-CloudflareZone
 Remove-CloudflareZoneDNSRecord
 Set-CloudflareZone
 Set-CloudflareZoneDNSRecord
-Test-CloudflareZoneActivation
 ```
 
 ```
