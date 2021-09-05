@@ -81,6 +81,8 @@ FunctionsToExport = @(
     'Import-CloudflareZoneDNSRecord',
     'New-CloudflareZone',
     'New-CloudflareZoneDNSRecord',
+    'Remove-CloudflareZone',
+    'Remove-CloudflareZoneDNSRecord',
     'Set-CloudflareZone',
     'Set-CloudflareZoneDNSRecord'
 )
@@ -115,6 +117,8 @@ FileList = @(
     'Public\Import-CloudflareZoneDNSRecord.ps1',
     'Public\New-CloudflareZone.ps1',
     'Public\New-CloudflareZoneDNSRecord.ps1',
+    'Public\Remove-CloudflareZone.ps1',
+    'Public\Remove-CloudflareZoneDNSRecord.ps1',
     'Public\Set-CloudflareZone.ps1',
     'Public\Set-CloudflareZoneDNSRecord.ps1'
     'PSCloudflare.psd1',

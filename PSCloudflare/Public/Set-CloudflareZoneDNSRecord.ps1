@@ -1,6 +1,8 @@
 Function Set-CloudflareZoneDNSRecord {
 
-    [CmdletBinding()]
+    [CmdletBinding(
+        ConfirmImpact = 'Medium'
+    )]
     [OutputType()]
 
     Param (
@@ -45,10 +47,6 @@ Function Set-CloudflareZoneDNSRecord {
 
         [Parameter()]
         [Switch]
-        $Passthru,
-
-        [Parameter()]
-        [Switch]
         $RawResponse
     )
 
@@ -86,8 +84,6 @@ Function Set-CloudflareZoneDNSRecord {
 
         $response = Invoke-CloudflareAPI -Method PUT -Endpoint $endpoint -Data $data
 
-        if ($Passthru.IsPresent) {
-            Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
-        }
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
     }
 }

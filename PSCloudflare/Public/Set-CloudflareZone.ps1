@@ -1,6 +1,8 @@
 Function Set-CloudflareZone {
 
-    [CmdletBinding()]
+    [CmdletBinding(
+        ConfirmImpact = 'Medium'
+    )]
     [OutputType()]
 
     Param (
@@ -22,10 +24,6 @@ Function Set-CloudflareZone {
         [Parameter()]
         [CloudflareZonePlan]
         $Plan,
-
-        [Parameter()]
-        [Switch]
-        $Passthru,
 
         [Parameter()]
         [Switch]
@@ -55,8 +53,6 @@ Function Set-CloudflareZone {
 
         $response = Invoke-CloudflareAPI -Method PATCH  -Endpoint $endpoint -Data $data
 
-        if ($Passthru.IsPresent) {
-            Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
-        }
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
     }
 }

@@ -14,8 +14,8 @@ Function New-CloudflareZone {
         [Parameter(
             Mandatory = $true
         )]
-        [String]
-        $AccountID,
+        [CloudflareAccount]
+        $Account,
 
         [Parameter()]
         [Switch]
@@ -24,10 +24,6 @@ Function New-CloudflareZone {
         [Parameter()]
         [CloudflareZoneType]
         $Type = 'Full',
-
-        [Parameter()]
-        [Switch]
-        $Passthru,
 
         [Parameter()]
         [Switch]
@@ -41,7 +37,7 @@ Function New-CloudflareZone {
             $data = ConvertTo-Json -InputObject (@{
                 Name = $item
                 Account = @{
-                    ID = $AccountID
+                    ID = $Account.ID
                 }
                 JumpStart = $JumpStart.IsPresent
                 Type = $Type
@@ -49,9 +45,7 @@ Function New-CloudflareZone {
 
             $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 
-            if ($Passthru.IsPresent) {
-                Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
-            }
+            Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
         }
     }
 }

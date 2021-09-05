@@ -49,10 +49,6 @@ Function New-CloudflareZoneDNSRecord {
 
         [Parameter()]
         [Switch]
-        $Passthru,
-
-        [Parameter()]
-        [Switch]
         $RawResponse
     )
 
@@ -70,8 +66,6 @@ Function New-CloudflareZoneDNSRecord {
 
         $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 
-        if ($Passthru.IsPresent) {
-            Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
-        }
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
     }
 }
