@@ -1,4 +1,4 @@
-Function Test-CloudflareZoneActivation {
+Function Invoke-CloudflareZoneActivation {
 
     [CmdletBinding()]
     [OutputType()]
