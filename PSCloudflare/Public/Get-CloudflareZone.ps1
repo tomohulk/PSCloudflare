@@ -44,10 +44,7 @@ Function Get-CloudflareZone {
             $parameterList = [Hashtable]$PSBoundParameters
 
             # Update AccountName and/or AccountID parameter Names to match expected format used by the Cloudflare API, but still follow PowerShell best practices.
-            $containsAccountName = $parameterList.ContainsKey(
-                'AccountName'
-            )
-            if ($containsAccountName) {
+            if ($PSBoundParameters.ContainsKey( 'AccountName' )) {
                 $parameterList.Add(
                     'account.name', $parameterList.Item('AccountName')
                 )
@@ -57,10 +54,7 @@ Function Get-CloudflareZone {
                 )
             }
 
-            $containsAccountID = $parameterList.ContainsKey(
-                'AccountID'
-            )
-            if ($containsAccountID) {
+            if ($PSBoundParameters.ContainsKey( 'AccountID' )) {
                 $parameterList.Add(
                     'account.id', $parameterList.Item('AccountID')
                 )

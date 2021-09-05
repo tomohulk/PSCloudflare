@@ -58,7 +58,7 @@ Function Invoke-CloudflareAPI {
         }
 
         try {
-                Invoke-RestMethod @request
+            Invoke-RestMethod @request
         } catch {
             $_
             return

@@ -15,6 +15,7 @@ Get-CloudflareZoneSubscription
 New-CloudflareZone
 New-CloudflareZoneDNSRecord
 Set-CloudflareZone
+Set-CloudflareZoneDNSRecord
 ```
 
 ```

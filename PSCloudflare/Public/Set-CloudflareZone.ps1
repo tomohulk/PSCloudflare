@@ -39,19 +39,13 @@ Function Set-CloudflareZone {
             Paused = $Paused.IsPresent
         }
 
-        $containsVanityNameServers = $PSBoundParameters.ContainsKey(
-            'VanityNameServers'
-        )
-        if ($containsVanityNameServers) {
+        if ($PSBoundParameters.ContatinKey( 'VanityNameServers' )) {
             $data.Add(
                 'Vanity_Name_Servers', $VanityNameServers
             )
         }
 
-        $containsPlan = $PSBoundParameters.ContainsKey(
-            'Plan'
-        )
-        if ($containsPlan) {
+        if ($PSBoundParameters.ContainsKey( 'Plan')) {
             $data.Add(
                 "Plan", $Plan
             )

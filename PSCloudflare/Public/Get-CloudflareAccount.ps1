@@ -16,10 +16,7 @@ Function Get-CloudflareAccount {
     Process {
         $endpoint = 'accounts'
 
-        $containsID = $PSBoundParameters.ContainsKey(
-            'ID'
-        )
-        if ($containsID) {
+        if ($PSBoundParameters.ContainsKey( 'ID' )) {
             $endpoint += '/{0}' -f $ID
         }
 
