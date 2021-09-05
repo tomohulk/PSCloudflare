@@ -21,6 +21,7 @@ Remove-CloudflareZone
 Remove-CloudflareZoneDNSRecord
 Set-CloudflareZone
 Set-CloudflareZoneDNSRecord
+Test-CloudflareZoneActivation
 ```
 
 ```
