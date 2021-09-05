@@ -4,7 +4,7 @@ Function Format-CloudflareEndpointString {
     [OutputType( [String] )]
 
     Param (
-        [Parameter( Mandatory = $true )]
+        [Parameter( HelpMessage = 'Search parameters to build the query string.', Mandatory = $true )]
         [Hashtable]
         $ParameterList
     )

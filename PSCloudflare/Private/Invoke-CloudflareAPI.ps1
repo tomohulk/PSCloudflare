@@ -4,11 +4,11 @@ Function Invoke-CloudflareAPI {
     [OutputType()]
 
     Param (
-        [Parameter()]
+        [Parameter( HelpMessage = 'Email to authenticate with.' )]
         [String]
         $Email = $env:CloudflareEmail,
 
-        [Parameter()]
+        [Parameter( HelpMessage = 'API Key to authenticate with.' )]
         [String]
         $APIKey = $env:ClouldflareAPIKey,
 
@@ -21,7 +21,7 @@ Function Invoke-CloudflareAPI {
         [String] 
         $Method,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter( HelpMessage = 'URI Endpoint to invoke the webrequest aginst.' ,Mandatory = $true )]
         [String] 
         $Endpoint,
 
@@ -33,6 +33,18 @@ Function Invoke-CloudflareAPI {
         [String]
         $Form
     )
+
+    Begin {
+        if ($null -eq $env:CloudflareEmail) {
+            Write-Error -Message 'The env:CloudflareEmail Environment Variable is $null.' -RecommendedAction 'Set the $env:CloudflareEmail Environment Variable.  See About_Environment_Variables.'
+            break
+        }
+
+        if ($null -eq $env:ClouldflareAPIKey) {
+            Write-Error -Message 'The $env:CloudflareAPIKey Environment Variable is $null.' -RecommendedAction 'Set the $env:CloudflareAPIKey Environment Variable.  See About_Environment_Variables.'
+            break
+        }
+    }
 
     Process {
         $Headers.Add( 'X-Auth-Email', $Email )
