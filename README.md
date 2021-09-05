@@ -6,6 +6,7 @@ https://api.cloudflare.com
 
 Current commands are:
 ```
+Export-CloudflareZoneDNSRecord
 Get-CloudflareAccount
 Get-CloudflareZone
 Get-CloudflareZoneAvailablePlan

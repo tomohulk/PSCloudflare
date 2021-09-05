@@ -72,6 +72,7 @@ ScriptsToProcess = @(
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
+    'Export-CloudflareZoneDNSRecord',
     'Get-CloudflareAccount',
     'Get-CloudflareZone',
     'Get-CloudflareZoneAvailablePlan',
@@ -108,6 +109,7 @@ FileList = @(
     'Private\Invoke-CloudflareAPI.ps1',
     'Private\PSCloudflare.ObjectDefinitions.ps1',
     'Private\Write-CloudflareResponse.ps1',
+    'Public\Export-CloudflareZoneDNSRecord.ps1',
     'Public\Get-CloudflareAccount.ps1'
     'Public\Get-CloudflareZone.ps1',
     'Public\Get-CloudflareZoneAvailablePlan.ps1',
