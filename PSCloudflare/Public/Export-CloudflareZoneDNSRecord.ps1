@@ -8,9 +8,9 @@ Function Export-CloudflareZoneDNSRecord {
         [CloudflareZone]
         $Zone,
 
-        [Parameter( HelpMessage = 'Path to create the .BIND file.')]
+        [Parameter( HelpMessage = 'Path to create the .BIND (.txt) file.' )]
         [String]
-        $Path = $pwd
+        $Path
     )
 
     Process {
@@ -18,7 +18,14 @@ Function Export-CloudflareZoneDNSRecord {
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
-        $Path += '\{0}.txt' -f $Zone.Name
-        Out-File -FilePath $Path -InputObject $response
+        if ($PSBoundParameters.ContatinsKey( 'Path' )) {
+            if (-not ($Path.EndsWith( '.txt' ))) {
+                $Path += '\{0}.txt' -f $Zone.Name
+            }
+            
+            Out-File -FilePath $Path -InputObject $response
+        } else {
+            Write-Output -InputObject $response
+        }
     }
 }

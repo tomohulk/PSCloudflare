@@ -10,7 +10,7 @@ Function Invoke-CloudflareAPI {
 
         [Parameter( HelpMessage = 'API Key to authenticate with.' )]
         [String]
-        $APIKey = $env:ClouldflareAPIKey,
+        $APIKey = $env:CloudflareAPIKey,
 
         [Parameter( Mandatory = $false )]
         [HashTable] 
@@ -21,7 +21,7 @@ Function Invoke-CloudflareAPI {
         [String] 
         $Method,
 
-        [Parameter( HelpMessage = 'URI Endpoint to invoke the webrequest aginst.' ,Mandatory = $true )]
+        [Parameter( HelpMessage = 'URI Endpoint to invoke the webrequest aginst.', Mandatory = $true )]
         [String] 
         $Endpoint,
 
@@ -40,7 +40,7 @@ Function Invoke-CloudflareAPI {
             break
         }
 
-        if ($null -eq $env:ClouldflareAPIKey) {
+        if ($null -eq $env:CloudflareAPIKey) {
             Write-Error -Message 'The $env:CloudflareAPIKey Environment Variable is $null.' -RecommendedAction 'Set the $env:CloudflareAPIKey Environment Variable.  See About_Environment_Variables.'
             break
         }
@@ -51,19 +51,19 @@ Function Invoke-CloudflareAPI {
         $Headers.Add( 'X-Auth-Key', $APIKey )
         $Headers.Add( 'Content-type', 'application/json' )
 
-        $request = @{
-            Headers = $Headers
-            Uri = 'https://api.cloudflare.com/client/v4/{0}' -f $Endpoint
-            Method = $Method
-            ErrorAction = 'Stop'
-        }
-
         if ($PSBoundParameters.ContainsKey( 'Body' )) {
             $request.Add( 'Body', $Data )
         }
 
         if ($PSBoundParameters.ContainsKey( 'Form' )) {
             $request.Add( 'Form', $Form )
+        }
+
+        $request = @{
+            Headers = $Headers
+            Uri = 'https://api.cloudflare.com/client/v4/{0}' -f $Endpoint
+            Method = $Method
+            ErrorAction = 'Stop'
         }
 
         try {
