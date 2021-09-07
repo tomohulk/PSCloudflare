@@ -27,7 +27,7 @@ Function Write-CloudflareResponse {
                 Write-Output -InputObject $returnValue
             }
         }
-    } elseif ($null -ne $response.errors) {
-        # Handle response errors
+    } else {
+        $Response
     }
 }

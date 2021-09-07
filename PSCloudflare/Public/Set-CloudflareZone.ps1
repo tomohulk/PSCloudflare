@@ -1,48 +1,56 @@
 Function Set-CloudflareZone {
 
-    [CmdletBinding( ConfirmImpact = 'Medium' )]
+    [CmdletBinding( ConfirmImpact = 'Medium', DefaultParameterSetName = '__AllParameterSets' )]
     [OutputType()]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ParameterSetName = '__AllParameterSets' )]
         [CloudflareZone]
         $Zone,
 
-        [Parameter()]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetPause' )]
         [Switch]
         $Paused,
 
-        [Parameter()]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetVanityNameServer' )]
         [String[]]
-        $VanityNameServers,
+        $VanityNameServer,
 
-        [Parameter()]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetPlan' )]
         [CloudflareZonePlan]
         $Plan,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.', ParameterSetName =  '__AllParameterSets' )]
         [Switch]
         $RawResponse
     )
 
     Process {
         $endpoint = 'zones/{0}' -f $Zone.ID
-            
-        $data = @{
-            Paused = $Paused.IsPresent
+        
+        switch ($PSCmdlet.ParameterSetName) {
+            'SetPause' {
+                $data = @{
+                    paused = $Paused.IsPresent
+                }
+            }
+
+            'SetVanityNameServer' {
+                $data = @{
+                    vanity_name_servers = $VanityNameServer
+                }
+            }
+
+            'SetPlan' {
+                $data = @{
+                    plan = @{
+                        id = $Plan.ID
+                    }
+                }
+            }
         }
 
-        if ($PSBoundParameters.ContatinKey( 'VanityNameServers' )) {
-            $data.Add( 'Vanity_Name_Servers', $VanityNameServers )
-        }
-
-        if ($PSBoundParameters.ContainsKey( 'Plan' )) {
-            $data.Add( 'Plan', $Plan )
-        }
-
-        $data = ConvertTo-Json -InputObject $data
-
-        $response = Invoke-CloudflareAPI -Method PATCH  -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
     }

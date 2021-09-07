@@ -21,9 +21,9 @@ Function Import-CloudflareZoneDNSRecord {
         foreach ($item in $FilePath) {
             $endpoint = 'zones/{0}/dns_records/import' -f $Zone.ID
 
-            $form = @{
-                File = '@{0}' -f $item
-                Proxied = $Proxied.IsPresent
+            $form = @{ 
+                file = Get-Item -Path $item
+                proxied = $Proxied.IsPresent
             }
 
             Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Form $form

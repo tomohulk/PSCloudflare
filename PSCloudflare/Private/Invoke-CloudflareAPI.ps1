@@ -12,7 +12,7 @@ Function Invoke-CloudflareAPI {
         [String]
         $APIKey = $env:CloudflareAPIKey,
 
-        [Parameter( Mandatory = $false )]
+        [Parameter()]
         [HashTable] 
         $Headers = @{},
         
@@ -26,21 +26,21 @@ Function Invoke-CloudflareAPI {
         $Endpoint,
 
         [Parameter()]
-        [String]
+        [Hashtable]
         $Data,
 
         [Parameter()]
-        [String]
+        [Hashtable]
         $Form
     )
 
     Begin {
-        if ($null -eq $env:CloudflareEmail) {
+        if ($null -eq $Email) {
             Write-Error -Message 'The env:CloudflareEmail Environment Variable is $null.' -RecommendedAction 'Set the $env:CloudflareEmail Environment Variable.  See About_Environment_Variables.'
             break
         }
 
-        if ($null -eq $env:CloudflareAPIKey) {
+        if ($null -eq $APIKey) {
             Write-Error -Message 'The $env:CloudflareAPIKey Environment Variable is $null.' -RecommendedAction 'Set the $env:CloudflareAPIKey Environment Variable.  See About_Environment_Variables.'
             break
         }
@@ -51,14 +51,6 @@ Function Invoke-CloudflareAPI {
         $Headers.Add( 'X-Auth-Key', $APIKey )
         $Headers.Add( 'Content-type', 'application/json' )
 
-        if ($PSBoundParameters.ContainsKey( 'Body' )) {
-            $request.Add( 'Body', $Data )
-        }
-
-        if ($PSBoundParameters.ContainsKey( 'Form' )) {
-            $request.Add( 'Form', $Form )
-        }
-
         $request = @{
             Headers = $Headers
             Uri = 'https://api.cloudflare.com/client/v4/{0}' -f $Endpoint
@@ -66,6 +58,15 @@ Function Invoke-CloudflareAPI {
             ErrorAction = 'Stop'
         }
 
+        $body = ConvertTo-Json -InputObject $Data
+        if ($PSBoundParameters.ContainsKey( 'Data' )) {
+            $request.Add( 'Body', $body )
+        }
+
+        if ($PSBoundParameters.ContainsKey( 'Form' )) {
+            $request.Add( 'Form', $Form )
+        }
+        
         try {
             Invoke-RestMethod @request
         } catch {

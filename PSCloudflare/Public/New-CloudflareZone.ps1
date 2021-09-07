@@ -29,14 +29,14 @@ Function New-CloudflareZone {
         foreach ($item in $Name) {
             $endpoint = 'zones'
             
-            $data = ConvertTo-Json -InputObject (@{
-                Name = $item
-                Account = @{
-                    ID = $Account.ID
+            $data = @{
+                name = $item
+                account = @{
+                    id = $Account.ID
                 }
-                JumpStart = $JumpStart.IsPresent
-                Type = $Type
-            })
+                jump_start= $JumpStart.IsPresent
+                type = ($Type -as [String]).ToLower()
+            }
 
             $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 

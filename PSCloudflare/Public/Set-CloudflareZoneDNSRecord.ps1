@@ -1,40 +1,40 @@
 Function Set-CloudflareZoneDNSRecord {
 
-    [CmdletBinding( ConfirmImpact = 'Medium' )]
+    [CmdletBinding( ConfirmImpact = 'Medium', DefaultParameterSetName = '__AllParameterSets' )]
     [OutputType()]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.', Mandatory = $true )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.', Mandatory = $true, ParameterSetName = '__AllParameterSets', ValueFromPipeline = $true )]
         [CloudflareZoneDNSRecord]
         $ZoneDNSRecord,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetType' )]
         [CloudflareZoneDNSRecordType]
         $Type,
         
-        [Parameter()]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetName' )]
         [ValidateLength( 0, 255 )]
         [String]
         $Name,
 
-        [Parameter()]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetContent' )]
         [String]
         $Content,
 
-        [Parameter()]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetTTL' )]
         [Int]
-        $TTL = 1,
+        $TTL,
 
-        [Parameter()]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetPriortiy' )]
         [ValidateRange( 0, 65535 )]
         [Int]
-        $Priority = 10,
+        $Priority,
 
-        [Parameter()]
+        [Parameter( Mandatory = $true, ParameterSetName = 'SetProxied' )]
         [Switch]
         $Proxied,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.', ParameterSetName = '__AllParameterSets' )]
         [Switch]
         $RawResponse
     )
@@ -42,36 +42,45 @@ Function Set-CloudflareZoneDNSRecord {
     Process {
         $endpoint = 'zones/{0}/dns_records/{1}' -f $ZoneDNSRecord.ZoneID ,$ZoneDNSRecord.ID
 
-        if (-not ($PSBoundParameters.ContainsKey( 'Type' ))) {
-            $Type = $ZoneDNSRecord.Type
+        switch ($PSCmdlet.ParameterSetName) {
+            'SetType' {
+                $data = @{
+                    type = $Type
+                }
+            }
+
+            'SetName' {
+                $data = @{
+                    name = $Name
+                }
+            }
+
+            'SetContent' {
+                $data = @{
+                    content = $Content
+                }
+            }
+
+            'SetTTL' {
+                $data = @{
+                    ttl = $TTL
+                }
+            }
+
+            'SetPriority' {
+                $data = @{
+                    priority = $Priority
+                }
+            }
+
+            'SetProxied' {
+                $data = @{
+                    proxied = $Proxied.IsPresent
+                }
+            }
         }
 
-        if (-not ($PSBoundParameter.ContainsKey( 'Name' ))) {
-            $Name = $ZoneDNSRecord.Name
-        }
-
-        if (-not ($PSBoundParameters.ContainsKey( 'Content' ))) {
-            $Content = $ZoneDNSRecord.Content
-        }
-
-        if (-not ($PSBoundParameter.ContaintsKey( 'TTL' ))) {
-            $TTL = $ZoneDNSRecord.TTL
-        }
-
-        if (-not ($PSBoundParameter.ContainsKey( 'Priority' ))) {
-            $Priority = $ZoneDNSRecord.Prority
-        }
-
-        $data = ConvertTo-Json -InputObject (@{
-            Type = $Type
-            Name = $Name
-            Content = $Content
-            TTL = $TTL
-            Priority = $Priority
-            Proxied = $Proxied.IsPresent
-        })
-
-        $response = Invoke-CloudflareAPI -Method PUT -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
     }
