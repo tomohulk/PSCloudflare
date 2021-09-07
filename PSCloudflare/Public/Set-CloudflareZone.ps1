@@ -33,15 +33,11 @@ Function Set-CloudflareZone {
         }
 
         if ($PSBoundParameters.ContatinKey( 'VanityNameServers' )) {
-            $data.Add(
-                'Vanity_Name_Servers', $VanityNameServers
-            )
+            $data.Add( 'Vanity_Name_Servers', $VanityNameServers )
         }
 
-        if ($PSBoundParameters.ContainsKey( 'Plan')) {
-            $data.Add(
-                "Plan", $Plan
-            )
+        if ($PSBoundParameters.ContainsKey( 'Plan' )) {
+            $data.Add( 'Plan', $Plan )
         }
 
         $data = ConvertTo-Json -InputObject $data

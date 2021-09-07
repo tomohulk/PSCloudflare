@@ -16,11 +16,9 @@ Function Get-CloudflareAccount {
     Process {
         $endpoint = 'accounts'
 
-        if (($PSBoundParameters.GetEnumerator().Where({ $_.Key -ne 'RawResponse' })).Count -ne 0) {
-            $parameterList = [Hashtable]$PSBoundParameters
+        $parameterList = [Hashtable]$PSBoundParameters
 
-            $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
-        }
+        $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 

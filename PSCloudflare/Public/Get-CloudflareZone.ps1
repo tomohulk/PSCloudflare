@@ -33,24 +33,22 @@ Function Get-CloudflareZone {
     Process {
         $endpoint = 'zones'
 
-        if (($PSBoundParameters.GetEnumerator().Where({ $_.Key -ne 'RawResponse' })).Count -ne 0) {
-            $parameterList = [Hashtable]$PSBoundParameters
+        $parameterList = [Hashtable]$PSBoundParameters
 
-            # Update AccountName and/or AccountID parameter Names to match expected format used by the Cloudflare API, but still follow PowerShell best practices.
-            if ($PSBoundParameters.ContainsKey( 'AccountName' )) {
-                $parameterList.Add( 'account.name', $parameterList.Item( 'AccountName' ))
+        # Update AccountName and/or AccountID parameter Names to match expected format used by the Cloudflare API, but still follow PowerShell best practices.
+        if ($PSBoundParameters.ContainsKey( 'AccountName' )) {
+            $parameterList.Add( 'account.name', $parameterList.Item( 'AccountName' ))
 
-                $parameterList.Remove( 'AccountName' )
-            }
-
-            if ($PSBoundParameters.ContainsKey( 'AccountID' )) {
-                $parameterList.Add( 'account.id', $parameterList.Item('AccountID' ))
-                
-                $parameterList.Remove( 'AccountID' )
-            }
-
-            $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
+            $parameterList.Remove( 'AccountName' )
         }
+
+        if ($PSBoundParameters.ContainsKey( 'AccountID' )) {
+            $parameterList.Add( 'account.id', $parameterList.Item('AccountID' ))
+            
+            $parameterList.Remove( 'AccountID' )
+        }
+
+        $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 

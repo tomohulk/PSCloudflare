@@ -21,12 +21,10 @@ Function Get-CloudflareOrganization {
 
     Process {
         $endpoint = 'user/organizations'
+            
+        $parameterList = [Hashtable]$PSBoundParameters
 
-        if (($PSBoundParameters.GetEnumerator().Where({ $_.Key -ne 'RawResponse' })).Count -ne 0) {
-            $parameterList = [Hashtable]$PSBoundParameters
-
-            $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
-        }
+        $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
