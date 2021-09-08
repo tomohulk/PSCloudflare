@@ -70,8 +70,8 @@ Function Invoke-CloudflareAPI {
         try {
             Invoke-RestMethod @request
         } catch {
-            $_
-            return
+            Write-Error $_
+            break
         }
     }
 }

@@ -9,24 +9,29 @@ Function Import-CloudflareZoneDNSRecord {
         $Zone,
 
         [Parameter( Mandatory = $true, ValueFromPipeline = $true )]
-        [String[]]
-        $FilePath,
+        [ValidateScript({ Test-Path -Path $_ -PathType Leaf })]
+        [System.IO.FileInfo]
+        $Path,
 
         [Parameter()]
         [Switch]
-        $Proxied
+        $Proxied,
+
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Switch]
+        $RawResponse
     )
 
     Process {
-        foreach ($item in $FilePath) {
-            $endpoint = 'zones/{0}/dns_records/import' -f $Zone.ID
+        $endpoint = 'zones/{0}/dns_records/import' -f $Zone.ID
 
-            $form = @{ 
-                file = Get-Item -Path $item
-                proxied = $Proxied.IsPresent
-            }
-
-            Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Form $form
+        $form = @{ 
+            file = Get-Item -Path $Path
+            proxied = $Proxied.IsPresent
         }
+
+        $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Form $form
+
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecordImport' -RawResponse $RawResponse.IsPresent
     }
 }

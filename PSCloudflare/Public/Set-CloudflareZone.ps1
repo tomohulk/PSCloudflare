@@ -4,7 +4,7 @@ Function Set-CloudflareZone {
     [OutputType()]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ParameterSetName = '__AllParameterSets' )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ParameterSetName = '__AllParameterSets', ValueFromPipeline = $true )]
         [CloudflareZone]
         $Zone,
 

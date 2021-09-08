@@ -45,7 +45,7 @@ Class CloudflareZone {
     [String[]]$OriginalNameServers
     [String]$OriginalRegistrar
     [String]$OriginalDNSHost
-    [DateTime]$CreatedOn
+    [Nullable[DateTime]]$CreatedOn
     [DateTime]$ModifiedOn
     [Nullable[DateTime]]$ActivatedOn
     [String[]]$VanityNameServers
@@ -193,6 +193,30 @@ Class CloudflareZoneDNSRecordMeta {
         $this.ManagedByApps = $object.managed_by_apps
         $this.ManagedByArgoTunnel = $object.managed_by_argo_tunnel
         $this.Source = $object.source
+    }
+}
+
+Class CloudflareZoneDNSRecordImport {
+    [Int]$RecordsAdded
+    [Int]$TotalRecordsParsed
+    [CloudflareZoneDNSRecordImportTiming]$Timing
+
+    CloudflareZoneDNSRecordImport([Object]$object) {
+        $this.RecordsAdded = $object.recs_added
+        $this.TotalRecordsParsed = $object.total_records_parsed
+        $this.Timing = $object.timing
+    }
+}
+
+Class CloudflareZoneDNSRecordImportTiming {
+    [DateTime]$StartTime
+    [DateTime]$EndTime
+    [Int]$ProcessTime
+
+    CloudflareZoneDNSRecordImportTiming([Object]$object) {
+        $this.StartTime = $object.start_time
+        $this.EndTime = $object.end_time
+        $this.ProcessTime = $object.process_time
     }
 }
 

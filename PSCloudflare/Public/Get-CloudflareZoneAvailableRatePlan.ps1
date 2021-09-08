@@ -1,4 +1,4 @@
-Function Get-CloudflareZoneAvailabeRatePlan {
+Function Get-CloudflareZoneAvailableRatePlan {
 
     [CmdletBinding()]
     [OutputType()]
