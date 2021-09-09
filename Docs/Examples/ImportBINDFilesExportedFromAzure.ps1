@@ -15,7 +15,7 @@ foreach ($bindFile in ( Get-ChildItem -Path 'C:\AzureExportedBINDFiles')) {
         
         if ($null -ne $newZone) {
             # Set the Plan the Zone uses.
-            $enterprisePlan = Get-CloudflareZoneAvailablePlan -Zone $newZone | ? Name -eq 'Enterprise'
+            $enterprisePlan = Get-CloudflareZoneAvailablePlan -Zone $newZone | Where-Object { $_.Name -eq 'Enterprise' }
             Set-CloudflareZone -Zone $newZone -Plan $enterprisePlan | Out-Null
 
             # Import the BIND File to the Zone.
