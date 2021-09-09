@@ -18,6 +18,8 @@ Function Remove-CloudflareZoneDNSRecord {
 
         $response = Invoke-CloudflareAPI -Method DELETE -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
+        if ($RawResponse.IsPresent) {
+            Write-Output -InputObject $response
+        }
     }
 }
