@@ -36,12 +36,10 @@ Function Invoke-CloudflareAPI {
 
     Begin {
         if ($null -eq $Email) {
-            Write-Error -Message 'The env:CloudflareEmail Environment Variable is $null.' -RecommendedAction 'Set the $env:CloudflareEmail Environment Variable.  See About_Environment_Variables.'
             break
         }
 
         if ($null -eq $APIKey) {
-            Write-Error -Message 'The $env:CloudflareAPIKey Environment Variable is $null.' -RecommendedAction 'Set the $env:CloudflareAPIKey Environment Variable.  See About_Environment_Variables.'
             break
         }
     }

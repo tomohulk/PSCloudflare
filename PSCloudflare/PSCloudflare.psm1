@@ -14,3 +14,13 @@ foreach ($path in $paths) {
 }
 
 #endregion ProviderPath
+
+#region ApiCredentials
+
+if ($null -eq $env:CloudflareEmail) {
+    $env:CloudflareEmail = Read-Host -Prompt 'Enter Cloudflare Email'
+}
+
+if ($null -eq $env:CloudflareAPIKey) {
+    $env:CloudflareAPIKey = Read-Host -Prompt 'Enter Cloudflare API Key' -MaskInput
+}

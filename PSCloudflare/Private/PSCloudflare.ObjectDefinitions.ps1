@@ -383,4 +383,54 @@ Class CloudflareOrganization {
         $this.Roles = $object.Roles
     }
 }
+
+Class CloudflareZonePageRule {
+    [String]$ID
+    [CloudflareZonePageRuleTarget[]]$Targets
+    [CloudflareZonePageRuleAction[]]$Actions
+    [Int]$Priority
+    [String]$Status
+    [DateTime]$ModifiedOn
+    [DateTime]$CreatedOn
+
+    CloudflareZonePageRule([Object]$object) {
+        $this.ID = $object.id
+        $this.Targets = $object.targets
+        $this.Actions = $object.actions
+        $this.Priority = $object.priority
+        $this.Status = $object.status
+        $this.ModifiedOn = $object.modified_on
+        $this.CreatedOn = $object.created_on
+    }
+}
+
+Class CloudflareZonePageRuleTarget {
+    [String]$Url
+    [CloudflareZonePageRuleTargetConstraint]$Constraint
+
+    CloudflareZonePageRuleTarget([Object]$object) {
+        $this.Url = $object.url
+        $this.Constraint = $object.constraint
+    }
+}
+
+Class CloudflareZonePageRuleTargetConstraint {
+    [String]$Operator
+    [String]$Value
+
+    CloudflareZonePageRuleTargetConstraint([Object]$object) {
+        $this.Operator = $object.operator
+        $this.Value = $object.value
+    }
+}
+
+Class CloudflareZonePageRuleAction {
+    [String]$ID
+    [String]$Value
+
+    CloudflareZonePageRuleAction([Object]$object) {
+        $this.ID = $object.id
+        $this.Value = $object.value
+    }
+}
 #endregion Classes

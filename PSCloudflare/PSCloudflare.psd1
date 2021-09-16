@@ -33,7 +33,7 @@ Copyright = '(c) Thomas Malkewitz @tomohulk. All rights reserved.'
 Description = 'PowerShell Wrapper for the Cloudflare API.'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '5.1'
+PowerShellVersion = '7.0'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -79,6 +79,7 @@ FunctionsToExport = @(
     'Get-CloudflareZoneAvailablePlan',
     'Get-CloudflareZoneAvailableRatePlan',
     'Get-CloudflareZoneDNSRecord',
+    'Get-CloudflareZonePageRule',
     'Get-CloudflareSubscription',
     'Import-CloudflareZoneDNSRecord',
     'Invoke-CloudflareZoneActivation',
@@ -118,6 +119,7 @@ FileList = @(
     'Public\Get-CloudflareZoneAvailablePlan.ps1',
     'Public\Get-CloudflareZoneAvailableRatePlan.ps1',
     'Public\Get-CloudflareZoneDNSRecord.ps1',
+    'Public\Get-CloudflareZonePageRule.ps1',
     'Public\Get-CloudflareSubscription.ps1',
     'Public\Import-CloudflareZoneDNSRecord.ps1',
     'Public\Invoke-CloudflareZoneActivation.ps1',

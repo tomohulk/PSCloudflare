@@ -13,6 +13,7 @@ Get-CloudflareZone
 Get-CloudflareZoneAvailablePlan
 Get-CloudflareZoneAvailableRatePlan
 Get-CloudflareZoneDNSRecord
+Get-CloudflareZonePageRule
 Get-CloudflareZoneSubscription
 Import-CloudflareZoneDNSRecord
 Invoke-CloudflareZoneActivation
