@@ -85,8 +85,10 @@ FunctionsToExport = @(
     'Invoke-CloudflareZoneActivation',
     'New-CloudflareZone',
     'New-CloudflareZoneDNSRecord',
+    'New-CloudflareZonePageRule',
     'Remove-CloudflareZone',
     'Remove-CloudflareZoneDNSRecord',
+    'Remove-CloudflareZonePageRule',
     'Set-CloudflareZone',
     'Set-CloudflareZoneDNSRecord'
 )
@@ -125,8 +127,10 @@ FileList = @(
     'Public\Invoke-CloudflareZoneActivation.ps1',
     'Public\New-CloudflareZone.ps1',
     'Public\New-CloudflareZoneDNSRecord.ps1',
+    'Public\New-CloudflareZonePageRule.ps1',
     'Public\Remove-CloudflareZone.ps1',
     'Public\Remove-CloudflareZoneDNSRecord.ps1',
+    'Public\Remove-CloudflareZonePageRule.ps1',
     'Public\Set-CloudflareZone.ps1',
     'Public\Set-CloudflareZoneDNSRecord.ps1',
     'PSCloudflare.psd1',

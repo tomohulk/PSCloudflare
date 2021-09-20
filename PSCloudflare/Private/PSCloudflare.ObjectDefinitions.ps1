@@ -34,6 +34,11 @@ Enum CloudflareZoneDNSRecordType {
     TLSA
     URI
 }
+
+CloudflareZonePageRuleStatus {
+    Active
+    Disabled
+}
 #endregion Enums
 
 

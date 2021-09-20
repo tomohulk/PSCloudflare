@@ -4,11 +4,7 @@ Function Get-CloudflareZonePageRule {
     [OutputType()]
 
     Param (
-        [Parameter(
-            HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.',
-            Mandatory = $true,
-            ValueFromPipeline = $true
-        )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
         [CloudflareZone]
         $Zone,
 

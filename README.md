@@ -19,8 +19,10 @@ Import-CloudflareZoneDNSRecord
 Invoke-CloudflareZoneActivation
 New-CloudflareZone
 New-CloudflareZoneDNSRecord
+New-CloudflareZonePageRule
 Remove-CloudflareZone
 Remove-CloudflareZoneDNSRecord
+Remove-CloudflareZonePageRule
 Set-CloudflareZone
 Set-CloudflareZoneDNSRecord
 ```
