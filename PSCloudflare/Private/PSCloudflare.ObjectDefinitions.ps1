@@ -35,7 +35,7 @@ Enum CloudflareZoneDNSRecordType {
     URI
 }
 
-CloudflareZonePageRuleStatus {
+Enum CloudflareZonePageRuleStatus {
     Active
     Disabled
 }

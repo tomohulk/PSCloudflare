@@ -27,12 +27,11 @@ Set-CloudflareZone
 Set-CloudflareZoneDNSRecord
 ```
 
-```
-# Set your credentials as environment variables.
-# This needs to be done every time you start your shell and are using the PSCloudflare module.
-PS C:\> $env:CloudflareEmail = 'tomohulk@github.io'
-PS C:\> $env:CloudflareAPIKey = 'c2547eb745079dac9320b638f5e225cf483cc5cfdda41'
-```
+You will be prompted to input your Cloudflare Email and API key when you import the module.
+This will need to be done everytime you start a new shell and load the PSCloudflare module.
+You could also set the `$env:CloudflareEmail` and `$env:CloudflareAPIKey` varibles in a profle script.
+![ModuleImport](/Images/ModuleImport.png?raw=true)
+
 
 ```
 # Get a Zone.
