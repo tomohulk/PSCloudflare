@@ -14,18 +14,18 @@ Function New-CloudflareZonePageRule {
 
         [Parameter( Mandatory = $true )]
         [String]
-        $ConstraintOperator,
+        $TargetConstraintOperator,
 
         [Parameter( Mandatory = $true )]
         [String]
-        $ConstraintValue,
+        $TargetConstraintValue,
 
         [Parameter( Mandatory = $true )]
         [String]
         $ActionID,
 
         [Parameter( Mandatory = $true )]
-        [String]
+        [Hashtable]
         $ActionValue,
 
         [Parameter()]
@@ -43,21 +43,23 @@ Function New-CloudflareZonePageRule {
 
     $endpoint = 'zones/{0}/pagerules' -f $Zone.ID
 
-    $data = ConvertTo-Json -InputObject @{
-        Targets = @{
-            Target = $Target
-            Constraint = @{
-                Operator = $ConstraintOperator
-                Value = $ConstraintValue
+    $data = @{
+        targets = @(@{
+            target = $Target
+            constraint = @{
+                operator = $TargetConstraintOperator
+                value = $TargetConstraintValue
             }
-        }
-        Actions = @{
-            ID = $ActionID
-            Value = $ActionValue
-        }
-        Priority = $Priority
-        Status = $Status
+        })
+        actions = @(@{
+            id = $ActionID
+            value = $ActionValue
+        })
+        priority = $Priority
+        status = ($Status -as [String]).ToLower()
     }
+
+    $global:dataHashTable = $data
 
     $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 

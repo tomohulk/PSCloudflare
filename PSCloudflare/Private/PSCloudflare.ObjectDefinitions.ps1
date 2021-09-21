@@ -410,11 +410,11 @@ Class CloudflareZonePageRule {
 }
 
 Class CloudflareZonePageRuleTarget {
-    [String]$Url
+    [String]$Target
     [CloudflareZonePageRuleTargetConstraint]$Constraint
 
     CloudflareZonePageRuleTarget([Object]$object) {
-        $this.Url = $object.url
+        $this.Target = $object.target
         $this.Constraint = $object.constraint
     }
 }

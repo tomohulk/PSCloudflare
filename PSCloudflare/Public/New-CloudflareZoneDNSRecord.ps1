@@ -42,14 +42,14 @@ Function New-CloudflareZoneDNSRecord {
     Process {
         $endpoint = 'zones/{0}/dns_records' -f $Zone.ID
 
-        $data = ConvertTo-Json -InputObject (@{
+        $data = @{
             Type = $Type
             Name = $Name
             Content = $Content
             TTL = $TTL
             Priority = $Priority
             Proxied = $Proxied.IsPresent
-        })
+        }
 
         $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 

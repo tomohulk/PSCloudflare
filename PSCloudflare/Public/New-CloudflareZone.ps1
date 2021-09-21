@@ -34,7 +34,7 @@ Function New-CloudflareZone {
                 account = @{
                     id = $Account.ID
                 }
-                jump_start= $JumpStart.IsPresent
+                jump_start = $JumpStart.IsPresent
                 type = ($Type -as [String]).ToLower()
             }
 
