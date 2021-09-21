@@ -2,7 +2,7 @@
 $account = Get-CloudflareAccount
 
 # Loop through all the BIND files that where exported from Azure.
-foreach ($bindFile in ( Get-ChildItem -Path 'C:\AzureExportedBINDFiles')) {
+foreach ($bindFile in ( Get-ChildItem -Path 'C:\AzureExportedBINDFiles' )) {
     # Strip out the Azure Name Server records.
     $bindContent = Get-Content -Path $bindFile.FullName
     $bindContent | Where-Object { $_ -notmatch '172800 IN NS ns' } | Set-Content -Path $bindFile.FullName

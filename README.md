@@ -28,9 +28,9 @@ Set-CloudflareZoneDNSRecord
 ```
 
 You will be prompted to input your Cloudflare Email and API key when you import the module.
-This will need to be done everytime you start a new shell and load the PSCloudflare module.
-You could also set the `$env:CloudflareEmail` and `$env:CloudflareAPIKey` varibles in a profle script.
-![ModuleImport](/Images/ModuleImport.png?raw=true)
+This will need to be done every time you start a new shell and load the PSCloudflare module.
+You could also set the `$env:CloudflareEmail` and `$env:CloudflareAPIKey` variables in a profile script.
+![ModuleImport](/Docs/Images/ModuleImport.png?raw=true)
 
 
 ```
