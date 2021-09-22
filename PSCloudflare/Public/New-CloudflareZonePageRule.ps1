@@ -59,8 +59,6 @@ Function New-CloudflareZonePageRule {
         status = ($Status -as [String]).ToLower()
     }
 
-    $global:dataHashTable = $data
-
     $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 
     Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZonePageRule' -RawResponse $RawResponse.IsPresent
