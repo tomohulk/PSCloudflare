@@ -56,7 +56,7 @@ Function New-CloudflareZonePageRule {
             value = $ActionValue
         })
         priority = $Priority
-        status = ($Status -as [String]).ToLower()
+        status = ( $Status -as [String] ).ToLower()
     }
 
     $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data

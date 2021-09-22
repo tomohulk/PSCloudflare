@@ -51,7 +51,7 @@ Class CloudflareZone {
     [String]$OriginalRegistrar
     [String]$OriginalDNSHost
     [Nullable[DateTime]]$CreatedOn
-    [DateTime]$ModifiedOn
+    [Nullable[DateTime]]$ModifiedOn
     [Nullable[DateTime]]$ActivatedOn
     [String[]]$VanityNameServers
     [String[]]$VanityNameServersIPs
@@ -167,8 +167,8 @@ Class CloudflareZoneDNSRecord {
     [CloudflareZoneDNSRecordMeta]$Meta
     [String]$ZoneID
     [String]$ZoneName
-    [DateTime]$CreatedOn
-    [DateTime]$ModifiedOn
+    [Nullable[DateTime]]$CreatedOn
+    [Nullable[DateTime]]$ModifiedOn
 
     CloudflareZoneDNSRecord([Object]$object) {
         $this.ID = $object.id
@@ -214,8 +214,8 @@ Class CloudflareZoneDNSRecordImport {
 }
 
 Class CloudflareZoneDNSRecordImportTiming {
-    [DateTime]$StartTime
-    [DateTime]$EndTime
+    [Nullable[DateTime]]$StartTime
+    [Nullable[DateTime]]$EndTime
     [Int]$ProcessTime
 
     CloudflareZoneDNSRecordImportTiming([Object]$object) {
@@ -353,7 +353,7 @@ Class CloudflareAccount {
     [String]$ID
     [String]$Name
     [CloudflareAccountSettings]$Settings
-    [DateTime]$CreatedOn
+    [Nullable[DateTime]]$CreatedOn
 
     CloudflareAccount([Object]$object) {
         $this.ID = $object.id
@@ -395,8 +395,8 @@ Class CloudflareZonePageRule {
     [CloudflareZonePageRuleAction[]]$Actions
     [Int]$Priority
     [String]$Status
-    [DateTime]$ModifiedOn
-    [DateTime]$CreatedOn
+    [Nullable[DateTime]]$ModifiedOn
+    [Nullable[DateTime]]$CreatedOn
 
     CloudflareZonePageRule([Object]$object) {
         $this.ID = $object.id
