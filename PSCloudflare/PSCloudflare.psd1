@@ -81,6 +81,7 @@ FunctionsToExport = @(
     'Get-CloudflareZoneDNSRecord',
     'Get-CloudflareZonePageRule',
     'Get-CloudflareSubscription',
+    'Get-CloudflareZoneWebApplicationFirewall',
     'Import-CloudflareZoneDNSRecord',
     'Initialize-CloudflareZonePageRuleAction',
     'Initialize-CloudflareZonePageRuleTarget',
@@ -93,7 +94,8 @@ FunctionsToExport = @(
     'Remove-CloudflareZonePageRule',
     'Set-CloudflareZone',
     'Set-CloudflareZoneDNSRecord',
-    'Set-CloudflareZonePageRule'
+    'Set-CloudflareZonePageRule',
+    'Set-CloudflareZoneWebApplicationFirewall'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -127,6 +129,7 @@ FileList = @(
     'Public\Get-CloudflareZonePageRule.ps1',
     'Public\Get-CloudflareSubscription.ps1',
     'Public\Import-CloudflareZoneDNSRecord.ps1',
+    'Public\Get-CloudflareZoneWebApplicationFirewall.ps1',
     'Public\Initialize-CloudflareZonePageRuleAction.ps1',
     'Public\Initialize-CloudflareZonePageRuleTarget.ps1',
     'Public\Invoke-CloudflareZoneActivation.ps1',
@@ -138,7 +141,8 @@ FileList = @(
     'Public\Remove-CloudflareZonePageRule.ps1',
     'Public\Set-CloudflareZone.ps1',
     'Public\Set-CloudflareZoneDNSRecord.ps1',
-    'Public\Set-CloudflareZonePageRule.ps1'
+    'Public\Set-CloudflareZonePageRule.ps1',
+    'Public\Set-CloudflareZoneWebApplicationFirewall.ps1',
     'PSCloudflare.psd1',
     'PSCloudflare.psm1'
 )

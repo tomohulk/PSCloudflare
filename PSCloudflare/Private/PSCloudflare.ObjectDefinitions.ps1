@@ -39,6 +39,11 @@ Enum CloudflareZonePageRuleStatus {
     Active
     Disabled
 }
+
+Enum CloudflareZoneWebApplicationFirewallValue {
+    On
+    Off
+}
 #endregion Enums
 
 
@@ -436,6 +441,20 @@ Class CloudflareZonePageRuleAction {
     CloudflareZonePageRuleAction([Object]$object) {
         $this.ID = $object.id
         $this.Value = $object.value
+    }
+}
+
+Class CloudflareZoneWebApplicationFirewall {
+    [String]$ID
+    [CloudflareZoneWebApplicationFirewallValue]$Value
+    [Bool]$Editable
+    [Nullable[DateTime]]$ModifiedOn
+
+    CloudflareZoneWebApplicationFirewall([Object]$object) {
+        $this.ID = $object.id
+        $this.Value = $object.value
+        $this.Editable = $object.editable
+        $this.ModifiedOn = $object.modified_on
     }
 }
 #endregion Classes

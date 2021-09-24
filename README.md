@@ -15,6 +15,7 @@ Get-CloudflareZoneAvailableRatePlan
 Get-CloudflareZoneDNSRecord
 Get-CloudflareZonePageRule
 Get-CloudflareZoneSubscription
+Get-CloudflareZoneWebApplicationFirewall
 Import-CloudflareZoneDNSRecord
 Initialize-CloudflareZonePageRuleAction
 Initialize-CloudflareZonePageRuleTarget
@@ -28,6 +29,7 @@ Remove-CloudflareZonePageRule
 Set-CloudflareZone
 Set-CloudflareZoneDNSRecord
 Set-CloudflareZonePageRule
+Set-CloudflareZoneWebApplicationFirewall
 ```
 
 You will be prompted to input your Cloudflare Email and API key when you import the module.
