@@ -27,6 +27,7 @@ Remove-CloudflareZoneDNSRecord
 Remove-CloudflareZonePageRule
 Set-CloudflareZone
 Set-CloudflareZoneDNSRecord
+Set-CloudflareZonePageRule
 ```
 
 You will be prompted to input your Cloudflare Email and API key when you import the module.
