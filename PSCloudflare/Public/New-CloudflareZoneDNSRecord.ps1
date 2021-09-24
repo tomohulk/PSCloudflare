@@ -11,7 +11,7 @@ Function New-CloudflareZoneDNSRecord {
         [Parameter( Mandatory = $true )]
         [CloudflareZoneDNSRecordType]
         $Type,
-
+        
         [Parameter( Mandatory = $true )]
         [ValidateLength( 0, 255 )]
         [String]
@@ -34,6 +34,10 @@ Function New-CloudflareZoneDNSRecord {
         [Switch]
         $Proxied,
 
+        [Parameter()]
+        [Hashtable]
+        $Data = $null,
+
         [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
         [Switch]
         $RawResponse
@@ -43,12 +47,13 @@ Function New-CloudflareZoneDNSRecord {
         $endpoint = 'zones/{0}/dns_records' -f $Zone.ID
 
         $data = @{
-            Type = $Type
-            Name = $Name
-            Content = $Content
-            TTL = $TTL
-            Priority = $Priority
-            Proxied = $Proxied.IsPresent
+            type = $Type
+            name = $Name
+            content = $Content
+            ttl = $TTL
+            priority = $Priority
+            proxied = $Proxied.IsPresent
+            data = $Data
         }
 
         $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data

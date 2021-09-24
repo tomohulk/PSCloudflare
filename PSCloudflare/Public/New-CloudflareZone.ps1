@@ -35,7 +35,7 @@ Function New-CloudflareZone {
                     id = $Account.ID
                 }
                 jump_start = $JumpStart.IsPresent
-                type = ( $Type -as [String] ).ToLower()
+                type = $Type
             }
 
             $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data

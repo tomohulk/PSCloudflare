@@ -391,8 +391,8 @@ Class CloudflareOrganization {
 
 Class CloudflareZonePageRule {
     [String]$ID
-    [CloudflareZonePageRuleTarget[]]$Targets
-    [CloudflareZonePageRuleAction[]]$Actions
+    [CloudflareZonePageRuleTarget[]]$Target
+    [CloudflareZonePageRuleAction[]]$Action
     [Int]$Priority
     [String]$Status
     [Nullable[DateTime]]$ModifiedOn
@@ -400,8 +400,8 @@ Class CloudflareZonePageRule {
 
     CloudflareZonePageRule([Object]$object) {
         $this.ID = $object.id
-        $this.Targets = $object.targets
-        $this.Actions = $object.actions
+        $this.Target = $object.targets
+        $this.Action = $object.actions
         $this.Priority = $object.priority
         $this.Status = $object.status
         $this.ModifiedOn = $object.modified_on
@@ -431,7 +431,7 @@ Class CloudflareZonePageRuleTargetConstraint {
 
 Class CloudflareZonePageRuleAction {
     [String]$ID
-    [String]$Value
+    [Object]$Value
 
     CloudflareZonePageRuleAction([Object]$object) {
         $this.ID = $object.id

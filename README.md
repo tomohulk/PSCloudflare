@@ -16,6 +16,8 @@ Get-CloudflareZoneDNSRecord
 Get-CloudflareZonePageRule
 Get-CloudflareZoneSubscription
 Import-CloudflareZoneDNSRecord
+Initialize-CloudflareZonePageRuleAction
+Initialize-CloudflareZonePageRuleTarget
 Invoke-CloudflareZoneActivation
 New-CloudflareZone
 New-CloudflareZoneDNSRecord

@@ -9,6 +9,7 @@ Function Remove-CloudflareZonePageRule {
         $Zone,
 
         [Parameter( Mandatory = $true )]
+        [CloudflareZonePageRule]
         $PageRule
     )
 

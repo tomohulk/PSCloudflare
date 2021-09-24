@@ -57,8 +57,8 @@ Function Invoke-CloudflareAPI {
         }
 
         if ($PSBoundParameters.ContainsKey( 'Data' )) {
-            $body = ConvertTo-Json -Depth 4 -InputObject $Data
-            $request.Add( 'Body', $body )
+            $body = ConvertTo-Json -Depth 4 -EnumsAsStrings -InputObject $Data
+            $request.Add( 'Body', $body.ToLower() )
         }
 
         if ($PSBoundParameters.ContainsKey( 'Form' )) {
