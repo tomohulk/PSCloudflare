@@ -40,19 +40,24 @@ Enum CloudflareZonePageRuleStatus {
     Disabled
 }
 
-Enum CloudflareZoneWebApplicationFirewallValue {
+Enum CloudflareZoneWAFValue {
     On
     Off
 }
 
-Enum CloudflareZoneFirewallPackageSensitivity {
+Enum CloudflareZoneWAFRuleGroupMode {
+    On
+    Off
+}
+
+Enum CloudflareZoneWAFPackageSensitivity {
     High
     Medium
     Low
     Off
 }
 
-Enum CloudflareZoneFirewallPackageActionMode {
+Enum CloudflareZoneWAFPackageActionMode {
     Simulate
     Block
     Challenge
@@ -457,9 +462,9 @@ Class CloudflareZonePageRuleAction {
     }
 }
 
-Class CloudflareZoneWebApplicationFirewall {
+Class CloudflareZoneWAF {
     [String]$ID
-    [CloudflareZoneWebApplicationFirewallValue]$Value
+    [CloudflareZoneWAFValue]$Value
     [Bool]$Editable
     [Nullable[DateTime]]$ModifiedOn
 
@@ -471,17 +476,39 @@ Class CloudflareZoneWebApplicationFirewall {
     }
 }
 
-Class CloudflareZoneFirewallPackage {
+Class CloudflareZoneWAFRuleGroup {
+    [String]$ID
+    [String]$Name
+    [String]$Description
+    [Int]$RulesCount
+    [Int]$ModifiedRulesCount
+    [String]$PackageID
+    [CloudflareZoneWAFRuleGroupMode]$Mode
+    [CloudflareZoneWAFRuleGroupMode[]]$AllowedModes
+
+    CloudflareZoneWAFRuleGroup([Object]$object) {
+        $this.ID = $object.id
+        $this.Name = $object.name
+        $this.Description = $object.description
+        $this.RulesCount = $object.rules_count
+        $this.ModifiedRulesCount = $object.modified_rules_count
+        $this.PackageID = $object.package_id
+        $this.Mode = $object.mode
+        $this.AllowedModes = $object.allowed_modes
+    }
+}
+
+Class CloudflareZoneWAFPackage {
     [String]$ID
     [String]$Name
     [String]$Description
     [String]$DetectionMode
     [String]$ZoneID
     [String]$Status
-    [Nullable[CloudflareZoneFirewallPackageSensitivity]]$Sensitivity
-    [Nullable[CloudflareZoneFirewallPackageActionMode]]$ActionMode
+    [Nullable[CloudflareZoneWAFPackageSensitivity]]$Sensitivity
+    [Nullable[CloudflareZoneWAFPackageActionMode]]$ActionMode
 
-    CloudflareZoneFirewallPackage([Object]$object) {
+    CloudflareZoneWAFPackage([Object]$object) {
         $this.ID = $object.id
         $this.Name = $object.name
         $this.Description = $object.description
@@ -492,4 +519,5 @@ Class CloudflareZoneFirewallPackage {
         $this.ActionMode = $object.action_mode
     }
 }
+
 #endregion Classes

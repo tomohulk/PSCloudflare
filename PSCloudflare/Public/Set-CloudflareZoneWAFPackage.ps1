@@ -1,19 +1,19 @@
-Function Set-CloudflareZoneFirewallPackage {
+Function Set-CloudflareZoneWAFPackage {
 
     [CmdletBinding()]
     [OutputType()]
 
     Param (
         [Parameter( Mandatory = $true )]
-        [CloudflareZoneFirewallPackage]
+        [CloudflareZoneWAFPackage]
         $FirewallPackage,
 
         [Parameter()]
-        [CloudflareZoneFirewallPackageSensitivity]
+        [CloudflareZoneWAFPackageSensitivity]
         $Sensitivity,
 
         [Parameter()]
-        [CloudflareZoneFirewallPackageActionMode]
+        [CloudflareZoneWAFPackageActionMode]
         $ActionMode,
 
         [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
@@ -31,12 +31,12 @@ Function Set-CloudflareZoneFirewallPackage {
         }
 
         $data = @{
-            sensitivity = $Sensitivity
-            action_mode = $ActionMode
+            sensitivity = $Sensitivity.ToString().ToLower()
+            action_mode = $ActionMode.ToString().ToLower()
         }
 
         $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneFirewallPackage' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneWAFPackage' -RawResponse $RawResponse.IsPresent
     }
 }

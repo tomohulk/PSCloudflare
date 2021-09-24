@@ -79,10 +79,11 @@ FunctionsToExport = @(
     'Get-CloudflareZoneAvailablePlan',
     'Get-CloudflareZoneAvailableRatePlan',
     'Get-CloudflareZoneDNSRecord',
-    'Get-CloudflareZoneFirewallPackage',
     'Get-CloudflareZonePageRule',
     'Get-CloudflareSubscription',
-    'Get-CloudflareZoneWebApplicationFirewall',
+    'Get-CloudflareZoneWAF',
+    'Get-CloudflareZoneWAFPackage',
+    'Get-CloudflareZoneWAFRuleGroup',
     'Import-CloudflareZoneDNSRecord',
     'Initialize-CloudflareZonePageRuleAction',
     'Initialize-CloudflareZonePageRuleTarget',
@@ -95,9 +96,10 @@ FunctionsToExport = @(
     'Remove-CloudflareZonePageRule',
     'Set-CloudflareZone',
     'Set-CloudflareZoneDNSRecord',
-    'Set-CloudflareZoneFirewallPackage',
     'Set-CloudflareZonePageRule',
-    'Set-CloudflareZoneWebApplicationFirewall'
+    'Set-CloudflareZoneWAF',
+    'Set-CloudflareZoneWAFPackage',
+    'Set-CloudflareZoneWAFRuleGroup'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -128,11 +130,12 @@ FileList = @(
     'Public\Get-CloudflareZoneAvailablePlan.ps1',
     'Public\Get-CloudflareZoneAvailableRatePlan.ps1',
     'Public\Get-CloudflareZoneDNSRecord.ps1',
-    'Public\Get-CloudflareZoneFirewallPackage.ps1',
     'Public\Get-CloudflareZonePageRule.ps1',
     'Public\Get-CloudflareSubscription.ps1',
     'Public\Import-CloudflareZoneDNSRecord.ps1',
-    'Public\Get-CloudflareZoneWebApplicationFirewall.ps1',
+    'Public\Get-CloudflareZoneWAF.ps1',
+    'Public\Get-CloudflareZoneWAFPackage.ps1',
+    'Public\Get-CloudflareZoneWAFRuleGroup.ps1',
     'Public\Initialize-CloudflareZonePageRuleAction.ps1',
     'Public\Initialize-CloudflareZonePageRuleTarget.ps1',
     'Public\Invoke-CloudflareZoneActivation.ps1',
@@ -144,9 +147,10 @@ FileList = @(
     'Public\Remove-CloudflareZonePageRule.ps1',
     'Public\Set-CloudflareZone.ps1',
     'Public\Set-CloudflareZoneDNSRecord.ps1',
-    'Public\Set-CloudflareZoneFirewallPackage.ps1',
     'Public\Set-CloudflareZonePageRule.ps1',
-    'Public\Set-CloudflareZoneWebApplicationFirewall.ps1',
+    'Public\Set-CloudflareZoneWAF.ps1',
+    'Public\Set-CloudflareZoneWAFPackage.ps1',
+    'Public\Set-CloudflareZoneWAFRuleGroup.ps1',
     'PSCloudflare.psd1',
     'PSCloudflare.psm1'
 )

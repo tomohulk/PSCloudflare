@@ -1,4 +1,4 @@
-Function Get-CloudflareZoneWebApplicationFirewall {
+Function Get-CloudflareZoneWAF {
 
     [CmdletBinding()]
     [OutputType()]
@@ -18,6 +18,6 @@ Function Get-CloudflareZoneWebApplicationFirewall {
 
         $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneWebApplicationFirewall' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneWAF' -RawResponse $RawResponse.IsPresent
     }
 }

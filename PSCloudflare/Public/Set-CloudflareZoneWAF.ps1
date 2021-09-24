@@ -1,4 +1,4 @@
-Function Set-CloudflareZoneWebApplicationFirewall {
+Function Set-CloudflareZoneWAF {
 
     [CmdletBinding()]
     [OutputType()]
@@ -9,7 +9,7 @@ Function Set-CloudflareZoneWebApplicationFirewall {
         $Zone,
 
         [Parameter()]
-        [CloudflareZoneWebApplicationFirewallValue]
+        [CloudflareZoneWAFValue]
         $Value,
 
         [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
@@ -26,6 +26,6 @@ Function Set-CloudflareZoneWebApplicationFirewall {
 
         $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneWebApplicationFirewall' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneWAF' -RawResponse $RawResponse.IsPresent
     }
 }
