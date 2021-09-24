@@ -79,6 +79,7 @@ FunctionsToExport = @(
     'Get-CloudflareZoneAvailablePlan',
     'Get-CloudflareZoneAvailableRatePlan',
     'Get-CloudflareZoneDNSRecord',
+    'Get-CloudflareZoneFirewallPackage',
     'Get-CloudflareZonePageRule',
     'Get-CloudflareSubscription',
     'Get-CloudflareZoneWebApplicationFirewall',
@@ -94,6 +95,7 @@ FunctionsToExport = @(
     'Remove-CloudflareZonePageRule',
     'Set-CloudflareZone',
     'Set-CloudflareZoneDNSRecord',
+    'Set-CloudflareZoneFirewallPackage',
     'Set-CloudflareZonePageRule',
     'Set-CloudflareZoneWebApplicationFirewall'
 )
@@ -126,6 +128,7 @@ FileList = @(
     'Public\Get-CloudflareZoneAvailablePlan.ps1',
     'Public\Get-CloudflareZoneAvailableRatePlan.ps1',
     'Public\Get-CloudflareZoneDNSRecord.ps1',
+    'Public\Get-CloudflareZoneFirewallPackage.ps1',
     'Public\Get-CloudflareZonePageRule.ps1',
     'Public\Get-CloudflareSubscription.ps1',
     'Public\Import-CloudflareZoneDNSRecord.ps1',
@@ -141,6 +144,7 @@ FileList = @(
     'Public\Remove-CloudflareZonePageRule.ps1',
     'Public\Set-CloudflareZone.ps1',
     'Public\Set-CloudflareZoneDNSRecord.ps1',
+    'Public\Set-CloudflareZoneFirewallPackage.ps1',
     'Public\Set-CloudflareZonePageRule.ps1',
     'Public\Set-CloudflareZoneWebApplicationFirewall.ps1',
     'PSCloudflare.psd1',

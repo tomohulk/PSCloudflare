@@ -14,6 +14,7 @@ Function Format-CloudflareEndpointString {
         [System.Management.Automation.Internal.ShouldProcessParameters].GetProperties().Name
         [System.Management.Automation.Internal.TransactionParameters].GetProperties().Name
         'RawResponse'
+        'Zone'
     )
 
     foreach ($parameterName in $invalidParameters) {

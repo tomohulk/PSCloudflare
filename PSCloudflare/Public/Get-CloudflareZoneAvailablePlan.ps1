@@ -21,7 +21,6 @@ Function Get-CloudflareZoneAvailablePlan {
         $endpoint = 'zones/{0}/available_plans' -f $Zone.ID
         
         $parameterList = [Hashtable]$PSBoundParameters
-        $parameterList.Remove( 'Zone' )
 
         $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
         

@@ -1,4 +1,4 @@
-Function Get-CloudflareZonePageRule {
+Function Get-CloudflareZoneFirewallPackage {
 
     [CmdletBinding()]
     [OutputType()]
@@ -9,8 +9,8 @@ Function Get-CloudflareZonePageRule {
         $Zone,
 
         [Parameter()]
-        [CloudflareZonePageRuleStatus]
-        $Status,
+        [String]
+        $Name,
 
         [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
         [Switch]
@@ -18,7 +18,7 @@ Function Get-CloudflareZonePageRule {
     )
 
     Process {
-        $endpoint = 'zones/{0}/pagerules' -f $Zone.ID
+        $endpoint = 'zones/{0}/firewall/waf/packages' -f $Zone.ID
 
         $parameterList = [Hashtable]$PSBoundParameters
 
@@ -26,6 +26,6 @@ Function Get-CloudflareZonePageRule {
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZonePageRule' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneFirewallPackage' -RawResponse $RawResponse.IsPresent
     }
 }

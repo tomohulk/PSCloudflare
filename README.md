@@ -28,6 +28,7 @@ Remove-CloudflareZoneDNSRecord
 Remove-CloudflareZonePageRule
 Set-CloudflareZone
 Set-CloudflareZoneDNSRecord
+Set-CloudflareZoneFirewallPackage
 Set-CloudflareZonePageRule
 Set-CloudflareZoneWebApplicationFirewall
 ```

@@ -38,8 +38,6 @@ Function Get-CloudflareZoneDNSRecord {
         $endpoint = 'zones/{0}/dns_records' -f $Zone.ID
 
         $parameterList = [Hashtable]$PSBoundParameters
-
-        $parameterList.Remove( 'Zone' )
             
         $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
 

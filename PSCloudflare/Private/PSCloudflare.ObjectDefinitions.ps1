@@ -44,6 +44,19 @@ Enum CloudflareZoneWebApplicationFirewallValue {
     On
     Off
 }
+
+Enum CloudflareZoneFirewallPackageSensitivity {
+    High
+    Medium
+    Low
+    Off
+}
+
+Enum CloudflareZoneFirewallPackageActionMode {
+    Simulate
+    Block
+    Challenge
+}
 #endregion Enums
 
 
@@ -455,6 +468,28 @@ Class CloudflareZoneWebApplicationFirewall {
         $this.Value = $object.value
         $this.Editable = $object.editable
         $this.ModifiedOn = $object.modified_on
+    }
+}
+
+Class CloudflareZoneFirewallPackage {
+    [String]$ID
+    [String]$Name
+    [String]$Description
+    [String]$DetectionMode
+    [String]$ZoneID
+    [String]$Status
+    [Nullable[CloudflareZoneFirewallPackageSensitivity]]$Sensitivity
+    [Nullable[CloudflareZoneFirewallPackageActionMode]]$ActionMode
+
+    CloudflareZoneFirewallPackage([Object]$object) {
+        $this.ID = $object.id
+        $this.Name = $object.name
+        $this.Description = $object.description
+        $this.DetectionMode = $object.detection_mode
+        $this.ZoneID = $object.zone_id
+        $this.Status = $object.status
+        $this.Sensitivity = $object.sensitivity
+        $this.ActionMode = $object.action_mode
     }
 }
 #endregion Classes

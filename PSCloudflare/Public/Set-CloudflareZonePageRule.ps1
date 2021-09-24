@@ -49,7 +49,7 @@ Function Set-CloudflareZonePageRule {
             status = $Status
         }
 
-        $response = Invoke-CloudflareAPI -Method Patch -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZonePageRule' -RawResponse $RawResponse.IsPresent
     }
