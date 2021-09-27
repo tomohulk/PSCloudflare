@@ -1,10 +1,10 @@
 Function Format-CloudflareEndpointString {
 
     [CmdletBinding()]
-    [OutputType( [String] )]
+    [OutputType([String])]
 
     Param (
-        [Parameter( HelpMessage = 'Search parameters to build the query string.', Mandatory = $true )]
+        [Parameter(HelpMessage = 'Search parameters to build the query string.', Mandatory = $true)]
         [Hashtable]
         $ParameterList
     )
@@ -19,8 +19,8 @@ Function Format-CloudflareEndpointString {
     )
 
     foreach ($parameterName in $invalidParameters) {
-        if ($ParameterList.ContainsKey( $parameterName )) {
-            $ParameterList.Remove( $parameterName )
+        if ($ParameterList.ContainsKey($parameterName)) {
+            $ParameterList.Remove($parameterName)
         }
     }
     
@@ -31,7 +31,7 @@ Function Format-CloudflareEndpointString {
             $queryString += '{0}={1}&' -f $item.Name.ToLower(), $item.Value
         }
 
-        $queryString = $queryString.TrimEnd( '&' )
+        $queryString = $queryString.TrimEnd('&')
     }
 
     Write-Output -InputObject $queryString

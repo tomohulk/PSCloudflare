@@ -1,10 +1,10 @@
 Function Get-CloudflareZoneWAFPackage {
 
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareZoneWAFPackage])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
@@ -12,7 +12,7 @@ Function Get-CloudflareZoneWAFPackage {
         [String]
         $Name,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -24,7 +24,7 @@ Function Get-CloudflareZoneWAFPackage {
 
         $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
         
-        $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
+        $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAFPackage' -RawResponse $RawResponse.IsPresent
     }

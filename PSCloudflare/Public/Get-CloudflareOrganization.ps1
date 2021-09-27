@@ -1,20 +1,20 @@
 Function Get-CloudflareOrganization {
 
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareOrginzation])]
 
     Param (
         [Parameter()]
-        [ValidateSet( 'Member', 'Invited' )]
+        [ValidateSet('Member', 'Invited')]
         [String]
         $Status,
 
         [Parameter()]
-        [ValidateLength( 0, 100 )]
+        [ValidateLength(0, 100)]
         [String]
         $Name,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -26,7 +26,7 @@ Function Get-CloudflareOrganization {
 
         $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
 
-        $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
+        $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareOrganization' -RawResponse $RawResponse.IsPresent
     }

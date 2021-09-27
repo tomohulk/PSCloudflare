@@ -1,10 +1,10 @@
 Function Set-CloudflareZone {
 
-    [CmdletBinding( ConfirmImpact = 'Medium', DefaultParameterSetName = '__AllParameterSets' )]
-    [OutputType()]
+    [CmdletBinding(ConfirmImpact = 'Medium')]
+    [OutputType([CloudflareZone])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
@@ -20,7 +20,7 @@ Function Set-CloudflareZone {
         [CloudflareZonePlan]
         $Plan,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -29,7 +29,7 @@ Function Set-CloudflareZone {
         $endpoint = 'zones/{0}' -f $Zone.ID
         
         foreach ($parameter in @('Paused', 'VanityNameServer', 'Plan')) {
-            if ( -not ($PSBoundParameters.ContainsKey( $parameter ))) {
+            if ( -not ($PSBoundParameters.ContainsKey($parameter))) {
                 Set-Variable -Name $parameter -Value $Zone.$parameter
             }
         }
@@ -40,7 +40,7 @@ Function Set-CloudflareZone {
             plan = $Plan.ID
         }
 
-        $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method Patch -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
     }

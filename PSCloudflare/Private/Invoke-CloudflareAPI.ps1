@@ -4,11 +4,11 @@ Function Invoke-CloudflareAPI {
     [OutputType()]
 
     Param (
-        [Parameter( HelpMessage = 'Email to authenticate with.' )]
+        [Parameter(HelpMessage = 'Email to use for authenticate.')]
         [String]
         $Email = $env:CloudflareEmail,
 
-        [Parameter( HelpMessage = 'API Key to authenticate with.' )]
+        [Parameter(HelpMessage = 'API Key to use for authentication.')]
         [String]
         $APIKey = $env:CloudflareAPIKey,
 
@@ -17,7 +17,7 @@ Function Invoke-CloudflareAPI {
         $Headers = @{},
         
         [Parameter( Mandatory = $true )]
-        [ValidateSet( 'GET', 'POST', 'PUT', 'PATCH', 'DELETE' )]
+        [ValidateSet('Get', 'Post', 'Put', 'Patch', 'Delete')]
         [String] 
         $Method,
 
@@ -45,9 +45,9 @@ Function Invoke-CloudflareAPI {
     }
 
     Process {
-        $Headers.Add( 'X-Auth-Email', $Email )
-        $Headers.Add( 'X-Auth-Key', $APIKey )
-        $Headers.Add( 'Content-type', 'application/json' )
+        $Headers.Add('X-Auth-Email', $Email)
+        $Headers.Add('X-Auth-Key', $APIKey)
+        $Headers.Add('Content-type', 'application/json')
 
         $request = @{
             Headers = $Headers
@@ -56,14 +56,14 @@ Function Invoke-CloudflareAPI {
             ErrorAction = 'Stop'
         }
 
-        if ($PSBoundParameters.ContainsKey( 'Data' )) {
+        if ($PSBoundParameters.ContainsKey('Data')) {
             $json = ConvertTo-Json -Depth 4 -EnumsAsStrings -InputObject $Data
-            $body = [Regex]::Replace( $json, '(?<=")(\w+)(?=":)', { $args[0].Groups[1].Value.ToLower() } )
-            $request.Add( 'Body', $body )
+            $body = [Regex]::Replace($json, '(?<=")(\w+)(?=":)', { $args[0].Groups[1].Value.ToLower() })
+            $request.Add('Body', $body)
         }
 
-        if ($PSBoundParameters.ContainsKey( 'Form' )) {
-            $request.Add( 'Form', $Form )
+        if ($PSBoundParameters.ContainsKey('Form')) {
+            $request.Add('Form', $Form)
         }
         
         try {

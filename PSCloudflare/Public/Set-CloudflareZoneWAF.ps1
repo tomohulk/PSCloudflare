@@ -1,10 +1,10 @@
 Function Set-CloudflareZoneWAF {
 
-    [CmdletBinding( ConfirmImpact = 'Medium' )]
-    [OutputType()]
+    [CmdletBinding(ConfirmImpact = 'Medium')]
+    [OutputType([CloudflareZoneWAF])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
@@ -12,7 +12,7 @@ Function Set-CloudflareZoneWAF {
         [CloudflareZoneWAFValue]
         $Value,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -24,7 +24,7 @@ Function Set-CloudflareZoneWAF {
             Value = $Value.ToString().ToLower()
         }
 
-        $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method Patch -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAF' -RawResponse $RawResponse.IsPresent
     }

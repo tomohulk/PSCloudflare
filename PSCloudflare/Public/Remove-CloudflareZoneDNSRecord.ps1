@@ -1,10 +1,10 @@
 Function Remove-CloudflareZoneDNSRecord {
 
-    [CmdletBinding( ConfirmImpact = 'High' )]
+    [CmdletBinding(ConfirmImpact = 'High')]
     [OutputTYpe()]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZoneDNSRecord]
         $ZoneDNSRecord,
 
@@ -16,7 +16,7 @@ Function Remove-CloudflareZoneDNSRecord {
     Process {
         $endpoint = 'zones/{0}/dns_records/{1}' -f $ZoneDNSRecord.ZoneID, $ZoneDNSRecord.ID
 
-        $response = Invoke-CloudflareAPI -Method DELETE -Endpoint $endpoint
+        $response = Invoke-CloudflareAPI -Method Delete -Endpoint $endpoint
 
         if ($RawResponse.IsPresent) {
             Write-Output -InputObject $response

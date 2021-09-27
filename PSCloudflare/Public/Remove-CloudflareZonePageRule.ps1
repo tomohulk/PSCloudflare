@@ -1,14 +1,14 @@
 Function Remove-CloudflareZonePageRule {
 
-    [CmdletBinding( ConfirmImpact = 'High')]
+    [CmdletBinding(ConfirmImpact = 'High')]
     [OutputType()]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [CloudflareZonePageRule]
         $PageRule
     )
@@ -16,7 +16,7 @@ Function Remove-CloudflareZonePageRule {
     Process {
         $endpoint = 'zones/{0}/pagerulese/{1}' -f $ZoneDNSRecord.ZoneID, $PageRule.ID
 
-        $response = Invoke-CloudflareAPI -Method DELETE -Endpoint $endpoint
+        $response = Invoke-CloudflareAPI -Method Delete -Endpoint $endpoint
 
         if ($RawResponse.IsPresent) {
             Write-Output -InputObject $response

@@ -1,14 +1,14 @@
 Function New-CloudflareZone {
 
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareZone])]
 
     Param (
-        [Parameter( Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [String[]]
         $Name,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [CloudflareAccount]
         $Account,
 
@@ -20,15 +20,15 @@ Function New-CloudflareZone {
         [CloudflareZoneType]
         $Type = 'Full',
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
 
     Process {
+        $endpoint = 'zones'
+        
         foreach ($item in $Name) {
-            $endpoint = 'zones'
-            
             $data = @{
                 name = $item
                 account = @{
@@ -38,7 +38,7 @@ Function New-CloudflareZone {
                 type = $Type
             }
 
-            $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
+            $response = Invoke-CloudflareAPI -Method Post -Endpoint $endpoint -Data $data
 
             Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
         }

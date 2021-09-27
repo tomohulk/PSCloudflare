@@ -1,14 +1,14 @@
 Function Initialize-CloudflareZonePageRuleAction {
 
     [CmdletBinding()]
-    [OutputType( [CloudflareZonePageRuleAction] )]
+    [OutputType([CloudflareZonePageRuleAction])]
 
     Param (
-        [Parameter( Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [String]
         $ID,
 
-        [Parameter( Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [Hashtable]
         $Value
     )
@@ -18,5 +18,5 @@ Function Initialize-CloudflareZonePageRuleAction {
         Value = $Value
     }
 
-    [CloudflareZonePageRuleAction]::new( $object )
+    [CloudflareZonePageRuleAction]::new($object)
 }

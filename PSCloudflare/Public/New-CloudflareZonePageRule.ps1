@@ -1,18 +1,18 @@
 Function New-CloudflareZonePageRule {
 
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareZonePageRule])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [CloudflareZonePageRuleTarget[]]
         $Target,
 
-        [Parameter( Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [CloudflareZonePageRuleAction[]]
         $Action,
 
@@ -24,7 +24,7 @@ Function New-CloudflareZonePageRule {
         [CloudflareZonePageRuleStatus]
         $Status = 'Disabled',
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -38,7 +38,7 @@ Function New-CloudflareZonePageRule {
         status = $Status
     }
 
-    $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
+    $response = Invoke-CloudflareAPI -Method Post -Endpoint $endpoint -Data $data
 
     Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZonePageRule' -RawResponse $RawResponse.IsPresent
 }

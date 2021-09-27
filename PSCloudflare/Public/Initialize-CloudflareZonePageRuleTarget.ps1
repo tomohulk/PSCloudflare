@@ -1,18 +1,18 @@
 Function Initialize-CloudflareZonePageRuleTarget {
 
     [CmdletBinding()]
-    [OutputType( [CloudflareZonePageRuleTarget] )]
+    [OutputType([CloudflareZonePageRuleTarget])]
 
     Param (
-        [Parameter( Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [String]
         $Target,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [String]
         $Operator,
 
-        [Parameter( Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [String]
         $Value
     )
@@ -25,5 +25,5 @@ Function Initialize-CloudflareZonePageRuleTarget {
         }
     }
 
-    [CloudflareZonePageRuleTarget]::new( $object )
+    [CloudflareZonePageRuleTarget]::new($object)
 }

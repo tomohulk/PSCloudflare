@@ -1,14 +1,14 @@
 Function Remove-CloudflareZone {
 
-    [CmdletBinding( ConfirmImpact = 'High' )]
+    [CmdletBinding(ConfirmImpact = 'High')]
     [OutputType()]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline)]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -16,7 +16,7 @@ Function Remove-CloudflareZone {
     Process {
         $endpoint = 'zones/{0}' -f $Zone.ID
 
-        $response = Invoke-CloudflareAPI -Method DELETE -Endpoint $endpoint
+        $response = Invoke-CloudflareAPI -Method Delete -Endpoint $endpoint
 
         if ($RawResponse.IsPresent) {
             Write-Output -InputObject $response

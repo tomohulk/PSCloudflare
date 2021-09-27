@@ -1,14 +1,14 @@
 Function Set-CloudflareZoneWAFRuleGroup {
     
-    [CmdletBinding( ConfirmImpact = 'Medium' )]
-    [OutputType()]
+    [CmdletBinding(ConfirmImpact = 'Medium')]
+    [OutputType([CloudflareZoneWAFRuleGroup])]
 
     Param (
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [CloudflareZoneWAFPackage]
         $FirewallPackage,
 
-        [Parameter( Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [CloudflareZoneWAFRuleGroup]
         $RuleGroup,
 
@@ -16,7 +16,7 @@ Function Set-CloudflareZoneWAFRuleGroup {
         [CloudflareZoneWAFRuleGroupMode]
         $Mode,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -28,7 +28,7 @@ Function Set-CloudflareZoneWAFRuleGroup {
             mode = $Mode.ToString().ToLower()
         }
 
-        $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method patch -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAFRuleGroup' -RawResponse $RawResponse.IsPresent
     }

@@ -1,23 +1,23 @@
 Function New-CloudflareZoneDNSRecord {
 
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareZoneDNSRecord])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true)]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [CloudflareZoneDNSRecordType]
         $Type,
         
-        [Parameter( Mandatory = $true )]
-        [ValidateLength( 0, 255 )]
+        [Parameter(Mandatory = $true)]
+        [ValidateLength(0, 255)]
         [String]
         $Name,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [String]
         $Content,
 
@@ -26,7 +26,7 @@ Function New-CloudflareZoneDNSRecord {
         $TTL = 1,
 
         [Parameter()]
-        [ValidateRange( 0, 65535 )]
+        [ValidateRange(0, 65535)]
         [Int]
         $Priority = 10,
 
@@ -38,7 +38,7 @@ Function New-CloudflareZoneDNSRecord {
         [Hashtable]
         $Data = $null,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -56,7 +56,7 @@ Function New-CloudflareZoneDNSRecord {
             data = $Data
         }
 
-        $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method Post -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
     }

@@ -1,18 +1,18 @@
 Function Set-CloudflareZoneAlwaysUseHTTPS {
 
-    [CmdletBinding( ConfirmImpact = 'Medium' )]
-    [OutputType()]
+    [CmdletBinding(ConfirmImpact = 'Medium')]
+    [OutputType([CloudflareZoneAlwaysUseHTTPS])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [CloudflareZoneAlwaysUseHTTPSValue]
         $Value,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -24,7 +24,7 @@ Function Set-CloudflareZoneAlwaysUseHTTPS {
             value = $Value.ToString().ToLower()
         }
 
-        $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method Patch -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneAlwaysUseHTTPS' -RawResponse $RawResponse.IsPresent
     }

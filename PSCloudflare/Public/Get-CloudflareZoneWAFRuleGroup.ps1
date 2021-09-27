@@ -1,10 +1,10 @@
 Function Get-CloudflareZoneWAFRuleGroup {
     
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareZoneWAFRulGroup])]
 
     Param (
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [CloudflareZoneWAFPackage]
         $FirewallPackage,
 
@@ -20,7 +20,7 @@ Function Get-CloudflareZoneWAFRuleGroup {
         [Int]
         $RulesCount,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -31,15 +31,15 @@ Function Get-CloudflareZoneWAFRuleGroup {
         $parameterList = [Hashtable]$PSBoundParameters
 
         # Update RulesCount parameter names to match expected format used by the Cloudflare API, but still follow PowerShell best practices.
-        if ($PSBoundParameters.ContainsKey( 'RulesCount' )) {
-            $parameterList.Add( 'rules_count', $parameterList.Item( 'RulesCount' ))
+        if ($PSBoundParameters.ContainsKey('RulesCount')) {
+            $parameterList.Add('rules_count', $parameterList.Item('RulesCount'))
 
-            $parameterList.Remove( 'RulesCount' )
+            $parameterList.Remove('RulesCount')
         }
 
         $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
         
-        $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
+        $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAFRuleGroup' -RawResponse $RawResponse.IsPresent
     }

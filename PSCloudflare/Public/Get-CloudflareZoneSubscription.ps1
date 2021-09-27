@@ -1,14 +1,14 @@
 Function Get-CloudflareZoneSubscription {
 
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareZoneSubscription])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -16,7 +16,7 @@ Function Get-CloudflareZoneSubscription {
     Process {
         $endpoint = 'zones/{0}/subscription' -f $Zone.ID
 
-        $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
+        $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneSubscription' -RawResponse $RawResponse.IsPresent
     }

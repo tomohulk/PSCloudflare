@@ -1,14 +1,14 @@
 Function Import-CloudflareZoneDNSRecord {
 
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareZoneDNSRecordImport])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true)]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [ValidateScript({ Test-Path -Path $_ -PathType Leaf })]
         [System.IO.FileInfo]
         $Path,
@@ -17,7 +17,7 @@ Function Import-CloudflareZoneDNSRecord {
         [Switch]
         $Proxied,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -30,7 +30,7 @@ Function Import-CloudflareZoneDNSRecord {
             proxied = $Proxied.IsPresent
         }
 
-        $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Form $form
+        $response = Invoke-CloudflareAPI -Method Post -Endpoint $endpoint -Form $form
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneDNSRecordImport' -RawResponse $RawResponse.IsPresent
     }

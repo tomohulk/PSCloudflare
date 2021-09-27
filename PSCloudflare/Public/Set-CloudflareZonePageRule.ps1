@@ -1,14 +1,14 @@
 Function Set-CloudflareZonePageRule {
 
-    [Cmdletbinding( ConfirmImpact = 'Medium' )]
-    [OutputType()]
+    [Cmdletbinding(ConfirmImpact = 'Medium')]
+    [OutputType([CloudflareZonePageRule])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [CloudflareZonePageRule]
         $PageRule,
 
@@ -28,7 +28,7 @@ Function Set-CloudflareZonePageRule {
         [CloudflareZonePageRuleStatus]
         $Status = 'Disabled',
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -37,7 +37,7 @@ Function Set-CloudflareZonePageRule {
         $endpoint = 'zones/{0}/pagerules/{1}' -f $Zone.ID, $PageRule.ID
 
         foreach ($parameter in @('Target', 'Action', 'Priority', 'Status')) {
-            if ( -not ($PSBoundParameters.ContainsKey( $parameter ))) {
+            if ( -not ($PSBoundParameters.ContainsKey($parameter))) {
                 Set-Variable -Name $parameter -Value $PageRule.$parameter
             }
         }
@@ -49,7 +49,7 @@ Function Set-CloudflareZonePageRule {
             status = $Status
         }
 
-        $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
+        $response = Invoke-CloudflareAPI -Method Patch -Endpoint $endpoint -Data $data
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZonePageRule' -RawResponse $RawResponse.IsPresent
     }

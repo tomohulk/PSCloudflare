@@ -1,10 +1,10 @@
 Function Get-CloudflareZoneAvailablePlan {
 
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([CloudflareZonePlan])]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
+        [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
         [CloudflareZone]
         $Zone,
 
@@ -12,7 +12,7 @@ Function Get-CloudflareZoneAvailablePlan {
         [String]
         $ID,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
+        [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
@@ -24,7 +24,7 @@ Function Get-CloudflareZoneAvailablePlan {
 
         $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
         
-        $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
+        $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZonePlan' -RawResponse $RawResponse.IsPresent
     }
