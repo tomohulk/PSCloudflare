@@ -1,6 +1,6 @@
 Function Set-CloudflareZonePageRule {
 
-    [Cmdletbinding()]
+    [Cmdletbinding( ConfirmImpact = 'Medium' )]
     [OutputType()]
 
     Param (

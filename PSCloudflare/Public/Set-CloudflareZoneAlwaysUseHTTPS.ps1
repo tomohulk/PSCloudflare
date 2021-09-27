@@ -1,6 +1,6 @@
 Function Set-CloudflareZoneAlwaysUseHTTPS {
 
-    [CmdletBinding()]
+    [CmdletBinding( ConfirmImpact = 'Medium' )]
     [OutputType()]
 
     Param (

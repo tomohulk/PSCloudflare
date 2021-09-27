@@ -1,6 +1,6 @@
 Function Set-CloudflareZoneWAFPackage {
 
-    [CmdletBinding()]
+    [CmdletBinding( ConfirmImpact = 'Medium' )]
     [OutputType()]
 
     Param (

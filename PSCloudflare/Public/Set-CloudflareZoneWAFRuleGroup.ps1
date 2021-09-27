@@ -1,6 +1,6 @@
 Function Set-CloudflareZoneWAFRuleGroup {
     
-    [CmdletBinding()]
+    [CmdletBinding( ConfirmImpact = 'Medium' )]
     [OutputType()]
 
     Param (

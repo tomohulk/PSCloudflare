@@ -1,6 +1,6 @@
 Function Set-CloudflareZoneDNSRecord {
 
-    [CmdletBinding( ConfirmImpact = 'Medium', DefaultParameterSetName = '__AllParameterSets' )]
+    [CmdletBinding( ConfirmImpact = 'Medium' )]
     [OutputType()]
 
     Param (
