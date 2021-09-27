@@ -18,6 +18,6 @@ Function Invoke-CloudflareZoneActivation {
 
         $response = Invoke-CloudflareAPI -Method PUT -Endpont $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
     }
 }

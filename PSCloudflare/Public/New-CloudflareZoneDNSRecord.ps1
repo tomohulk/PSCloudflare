@@ -58,6 +58,6 @@ Function New-CloudflareZoneDNSRecord {
 
         $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
     }
 }

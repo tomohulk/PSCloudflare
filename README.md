@@ -10,6 +10,7 @@ Export-CloudflareZoneDNSRecord
 Get-CloudflareAccount
 Get-CloudflareOrganization
 Get-CloudflareZone
+Get-CloudflareZoneAlwaysUseHTTPS
 Get-CloudflareZoneAvailablePlan
 Get-CloudflareZoneAvailableRatePlan
 Get-CloudflareZoneDNSRecord
@@ -29,6 +30,7 @@ Remove-CloudflareZone
 Remove-CloudflareZoneDNSRecord
 Remove-CloudflareZonePageRule
 Set-CloudflareZone
+Set-CloudflareZoneAlwaysUseHTTPS
 Set-CloudflareZoneDNSRecord
 Set-CloudflareZoneFirewallPackage
 Set-CloudflareZonePageRule

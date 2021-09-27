@@ -30,6 +30,6 @@ Function Set-CloudflareZoneWAFRuleGroup {
 
         $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneWAFRuleGroup' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAFRuleGroup' -RawResponse $RawResponse.IsPresent
     }
 }

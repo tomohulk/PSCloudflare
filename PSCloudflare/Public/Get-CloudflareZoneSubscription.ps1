@@ -18,6 +18,6 @@ Function Get-CloudflareZoneSubscription {
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneSubscription' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneSubscription' -RawResponse $RawResponse.IsPresent
     }
 }

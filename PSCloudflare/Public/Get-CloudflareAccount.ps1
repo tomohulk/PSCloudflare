@@ -22,6 +22,6 @@ Function Get-CloudflareAccount {
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareAccount' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareAccount' -RawResponse $RawResponse.IsPresent
     }
 }

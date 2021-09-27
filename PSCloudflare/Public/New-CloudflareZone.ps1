@@ -40,7 +40,7 @@ Function New-CloudflareZone {
 
             $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 
-            Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
+            Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZone' -RawResponse $RawResponse.IsPresent
         }
     }
 }

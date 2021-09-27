@@ -1,4 +1,4 @@
-Function Set-CloudflareZoneWAF {
+Function Set-CloudflareZoneAlwaysUseHTTPS {
 
     [CmdletBinding()]
     [OutputType()]
@@ -8,8 +8,8 @@ Function Set-CloudflareZoneWAF {
         [CloudflareZone]
         $Zone,
 
-        [Parameter()]
-        [CloudflareZoneWAFValue]
+        [Parameter( Mandatory = $true )]
+        [CloudflareZoneAlwaysUseHTTPSValue]
         $Value,
 
         [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
@@ -18,14 +18,14 @@ Function Set-CloudflareZoneWAF {
     )
 
     Process {
-        $endpoint = 'zones/{0}/settings/waf' -f $Zone.ID
+        $endpoint = 'zones/{0}/settings/always_use_https'
 
         $data = @{
-            Value = $Value.ToString().ToLower()
+            value = $Value.ToString().ToLower()
         }
 
         $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
-        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAF' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneAlwaysUseHTTPSValue' -RawResponse $RawResponse.IsPresent
     }
 }

@@ -62,6 +62,11 @@ Enum CloudflareZoneWAFPackageActionMode {
     Block
     Challenge
 }
+
+Enum CloudflareZoneAlwaysUseHTTPSValue {
+    On
+    Off
+}
 #endregion Enums
 
 

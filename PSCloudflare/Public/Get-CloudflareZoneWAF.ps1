@@ -18,6 +18,6 @@ Function Get-CloudflareZoneWAF {
 
         $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneWAF' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAF' -RawResponse $RawResponse.IsPresent
     }
 }

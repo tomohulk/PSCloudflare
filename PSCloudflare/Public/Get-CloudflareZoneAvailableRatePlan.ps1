@@ -18,6 +18,6 @@ Function Get-CloudflareZoneAvailableRatePlan {
 
         $response = Invoke-CloudflareAPI -Method GET -APIQuery $endpoint
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneRatePlan' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneRatePlan' -RawResponse $RawResponse.IsPresent
     }
 }

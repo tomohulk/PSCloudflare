@@ -40,5 +40,5 @@ Function New-CloudflareZonePageRule {
 
     $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Data $data
 
-    Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZonePageRule' -RawResponse $RawResponse.IsPresent
+    Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZonePageRule' -RawResponse $RawResponse.IsPresent
 }

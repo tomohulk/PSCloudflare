@@ -32,6 +32,6 @@ Function Import-CloudflareZoneDNSRecord {
 
         $response = Invoke-CloudflareAPI -Method POST -Endpoint $endpoint -Form $form
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecordImport' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneDNSRecordImport' -RawResponse $RawResponse.IsPresent
     }
 }

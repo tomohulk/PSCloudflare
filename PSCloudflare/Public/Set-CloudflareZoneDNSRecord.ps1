@@ -4,34 +4,29 @@ Function Set-CloudflareZoneDNSRecord {
     [OutputType()]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.', Mandatory = $true, ParameterSetName = '__AllParameterSets', ValueFromPipeline = $true )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone DNSRecord object returned from Get-CloudflareZoneDNSRecord.', Mandatory = $true, ValueFromPipeline = $true )]
         [CloudflareZoneDNSRecord]
         $ZoneDNSRecord,
 
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetType' )]
+        [Parameter()]
         [CloudflareZoneDNSRecordType]
         $Type,
         
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetName' )]
+        [Parameter()]
         [ValidateLength( 0, 255 )]
         [String]
         $Name,
 
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetContent' )]
+        [Parameter()]
         [String]
         $Content,
 
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetTTL' )]
+        [Parameter()]
         [Int]
         $TTL,
 
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetPriortiy' )]
-        [ValidateRange( 0, 65535 )]
-        [Int]
-        $Priority,
-
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetProxied' )]
-        [Switch]
+        [Parameter()]
+        [Bool]
         $Proxied,
 
         [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.', ParameterSetName = '__AllParameterSets' )]
@@ -42,46 +37,22 @@ Function Set-CloudflareZoneDNSRecord {
     Process {
         $endpoint = 'zones/{0}/dns_records/{1}' -f $ZoneDNSRecord.ZoneID ,$ZoneDNSRecord.ID
 
-        switch ($PSCmdlet.ParameterSetName) {
-            'SetType' {
-                $data = @{
-                    type = $Type
-                }
+        foreach ($parameter in @('Type', 'Name', 'Content', 'TTL', 'Proxied')) {
+            if ( -not ($PSBoundParameters.ContainsKey( $parameter ))) {
+                Set-Variable -Name $parameter -Value $ZoneDNSRecord.$parameter
             }
+        }
 
-            'SetName' {
-                $data = @{
-                    name = $Name
-                }
-            }
-
-            'SetContent' {
-                $data = @{
-                    content = $Content
-                }
-            }
-
-            'SetTTL' {
-                $data = @{
-                    ttl = $TTL
-                }
-            }
-
-            'SetPriority' {
-                $data = @{
-                    priority = $Priority
-                }
-            }
-
-            'SetProxied' {
-                $data = @{
-                    proxied = $Proxied.IsPresent
-                }
-            }
+        $data = @{
+            type = $Type
+            name = $Name
+            content = $Content
+            ttl = $TTL
+            proxied = $Proxied
         }
 
         $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
-        Write-CloudflareResponse -Response $response -CloudflareObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneDNSRecord' -RawResponse $RawResponse.IsPresent
     }
 }
