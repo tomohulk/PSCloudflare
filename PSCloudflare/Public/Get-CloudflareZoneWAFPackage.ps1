@@ -23,7 +23,7 @@ Function Get-CloudflareZoneWAFPackage {
         $parameterList = [Hashtable]$PSBoundParameters
 
         $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
-
+        
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAFPackage' -RawResponse $RawResponse.IsPresent

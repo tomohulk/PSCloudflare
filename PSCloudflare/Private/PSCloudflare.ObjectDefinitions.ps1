@@ -473,7 +473,7 @@ Class CloudflareZoneWAF {
     [Bool]$Editable
     [Nullable[DateTime]]$ModifiedOn
 
-    CloudflareZoneWebApplicationFirewall([Object]$object) {
+    CloudflareZoneWAF([Object]$object) {
         $this.ID = $object.id
         $this.Value = $object.value
         $this.Editable = $object.editable

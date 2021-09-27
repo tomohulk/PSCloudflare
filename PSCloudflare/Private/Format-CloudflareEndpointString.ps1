@@ -10,11 +10,12 @@ Function Format-CloudflareEndpointString {
     )
 
     $invalidParameters = @(
+        'RawResponse',
+        'Zone',
+        'FirewallPackage',
         [System.Management.Automation.Internal.CommonParameters].GetProperties().Name
         [System.Management.Automation.Internal.ShouldProcessParameters].GetProperties().Name
         [System.Management.Automation.Internal.TransactionParameters].GetProperties().Name
-        'RawResponse'
-        'Zone'
     )
 
     foreach ($parameterName in $invalidParameters) {
@@ -30,9 +31,7 @@ Function Format-CloudflareEndpointString {
             $queryString += '{0}={1}&' -f $item.Name.ToLower(), $item.Value
         }
 
-        $queryString = $queryString.TrimEnd(
-            '&'
-        )
+        $queryString = $queryString.TrimEnd( '&' )
     }
 
     Write-Output -InputObject $queryString

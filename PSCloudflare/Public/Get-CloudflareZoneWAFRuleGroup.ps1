@@ -38,7 +38,7 @@ Function Get-CloudflareZoneWAFRuleGroup {
         }
 
         $endpoint += Format-CloudflareEndpointString -ParameterList $parameterList
-
+        
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
         Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneWAFRuleGroup' -RawResponse $RawResponse.IsPresent

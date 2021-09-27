@@ -4,23 +4,23 @@ Function Set-CloudflareZone {
     [OutputType()]
 
     Param (
-        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ParameterSetName = '__AllParameterSets', ValueFromPipeline = $true )]
+        [Parameter( HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true )]
         [CloudflareZone]
         $Zone,
 
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetPause' )]
-        [Switch]
+        [Parameter()]
+        [Bool]
         $Paused,
 
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetVanityNameServer' )]
+        [Parameter()]
         [String[]]
         $VanityNameServer,
 
-        [Parameter( Mandatory = $true, ParameterSetName = 'SetPlan' )]
+        [Parameter()]
         [CloudflareZonePlan]
         $Plan,
 
-        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.', ParameterSetName =  '__AllParameterSets' )]
+        [Parameter( HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.' )]
         [Switch]
         $RawResponse
     )
@@ -28,26 +28,16 @@ Function Set-CloudflareZone {
     Process {
         $endpoint = 'zones/{0}' -f $Zone.ID
         
-        switch ($PSCmdlet.ParameterSetName) {
-            'SetPause' {
-                $data = @{
-                    paused = $Paused.IsPresent
-                }
+        foreach ($parameter in @('Paused', 'VanityNameServer', 'Plan')) {
+            if ( -not ($PSBoundParameters.ContainsKey( $parameter ))) {
+                Set-Variable -Name $parameter -Value $Zone.$parameter
             }
+        }
 
-            'SetVanityNameServer' {
-                $data = @{
-                    vanity_name_servers = $VanityNameServer
-                }
-            }
-
-            'SetPlan' {
-                $data = @{
-                    plan = @{
-                        id = $Plan.ID
-                    }
-                }
-            }
+        $data = @{
+            paused = $Paused
+            vanity_name_servers = @($VanityNameServer)
+            plan = $Plan.ID
         }
 
         $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
