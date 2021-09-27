@@ -1,3 +1,5 @@
+#requires -Modules PSCloudflare
+
 # Get your Cloudflare Account object.
 $account = Get-CloudflareAccount
 
