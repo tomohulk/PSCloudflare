@@ -76,7 +76,7 @@ FunctionsToExport = @(
     'Get-CloudflareAccount',
     'Get-CloudflareOrganization',
     'Get-CloudflareZone',
-    'Get-CloudflareAlwaysUseHTTPS',
+    'Get-CloudflareZoneAlwaysUseHTTPS',
     'Get-CloudflareZoneAvailablePlan',
     'Get-CloudflareZoneAvailableRatePlan',
     'Get-CloudflareZoneDNSRecord',

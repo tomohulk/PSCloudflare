@@ -18,7 +18,7 @@ Function Set-CloudflareZoneAlwaysUseHTTPS {
     )
 
     Process {
-        $endpoint = 'zones/{0}/settings/always_use_https'
+        $endpoint = 'zones/{0}/settings/always_use_https' -f $Zone.ID
 
         $data = @{
             value = $Value.ToString().ToLower()
@@ -26,6 +26,6 @@ Function Set-CloudflareZoneAlwaysUseHTTPS {
 
         $response = Invoke-CloudflareAPI -Method PATCH -Endpoint $endpoint -Data $data
 
-        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneAlwaysUseHTTPSValue' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneAlwaysUseHTTPS' -RawResponse $RawResponse.IsPresent
     }
 }

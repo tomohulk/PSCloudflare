@@ -525,4 +525,17 @@ Class CloudflareZoneWAFPackage {
     }
 }
 
+Class CloudflareZoneAlwaysUseHTTPS {
+    [String]$ID
+    [CloudflareZoneAlwaysUseHTTPSValue]$Value
+    [Nullable[DateTime]]$ModifiedOn
+    [Bool]$Editable
+
+    CloudflareZoneAlwaysUseHTTPS([Object]$object) {
+        $this.ID = $object.id
+        $this.Value = $object.value
+        $this.ModifiedOn = $object.modified_on
+        $this.Editable = $object.editable
+    }
+}
 #endregion Classes

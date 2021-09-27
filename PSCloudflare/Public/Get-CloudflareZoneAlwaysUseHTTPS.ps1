@@ -18,6 +18,6 @@ Function Get-CloudflareZoneAlwaysUseHTTPS {
 
         $response = Invoke-CloudflareAPI -Method GET -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneAlwaysUseHTTPSValue' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneAlwaysUseHTTPS' -RawResponse $RawResponse.IsPresent
     }
 }
