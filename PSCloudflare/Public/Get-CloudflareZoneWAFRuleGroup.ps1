@@ -1,7 +1,7 @@
 Function Get-CloudflareZoneWAFRuleGroup {
     
     [CmdletBinding()]
-    [OutputType([CloudflareZoneWAFRulGroup])]
+    [OutputType([CloudflareZoneWAFRuleGroup])]
 
     Param (
         [Parameter(Mandatory = $true)]
