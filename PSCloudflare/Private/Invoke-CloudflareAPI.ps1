@@ -21,7 +21,7 @@ Function Invoke-CloudflareAPI {
         [String] 
         $Method,
 
-        [Parameter( HelpMessage = 'URI Endpoint to invoke the webrequest aginst.', Mandatory = $true )]
+        [Parameter(HelpMessage = 'URI Endpoint to invoke the webrequest aginst.', Mandatory = $true)]
         [String] 
         $Endpoint,
 
