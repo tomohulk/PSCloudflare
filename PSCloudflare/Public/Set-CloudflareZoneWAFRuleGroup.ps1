@@ -13,7 +13,8 @@ Function Set-CloudflareZoneWAFRuleGroup {
         $RuleGroup,
 
         [Parameter()]
-        [CloudflareZoneWAFRuleGroupMode]
+        [ValidateSet('On', 'Off')]
+        [String]
         $Mode,
 
         [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]

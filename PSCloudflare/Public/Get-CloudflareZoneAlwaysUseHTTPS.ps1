@@ -1,7 +1,7 @@
 Function Get-CloudflareZoneAlwaysUseHTTPS {
 
     [CmdletBinding()]
-    [OutputType([CloudflareZoneAlwaysUseHTTPS])]
+    [OutputType([CloudflareZoneSetting])]
 
     Param (
         [Parameter(HelpMessage = 'A Cloudflare Zone object returned from Get-CloudflareZone.', Mandatory = $true, ValueFromPipeline = $true)]
@@ -18,6 +18,6 @@ Function Get-CloudflareZoneAlwaysUseHTTPS {
 
         $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 
-        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneAlwaysUseHTTPS' -RawResponse $RawResponse.IsPresent
+        Write-CloudflareResponse -Response $response -ObjectType 'CloudflareZoneSetting' -RawResponse $RawResponse.IsPresent
     }
 }

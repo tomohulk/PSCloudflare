@@ -9,7 +9,8 @@ Function Set-CloudflareZoneWAF {
         $Zone,
 
         [Parameter()]
-        [CloudflareZoneWAFValue]
+        [ValidateSet('On', 'Off')]
+        [String]
         $Value,
 
         [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]

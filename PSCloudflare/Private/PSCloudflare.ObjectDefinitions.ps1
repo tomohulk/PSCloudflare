@@ -40,16 +40,6 @@ Enum CloudflareZonePageRuleStatus {
     Disabled
 }
 
-Enum CloudflareZoneWAFValue {
-    On
-    Off
-}
-
-Enum CloudflareZoneWAFRuleGroupMode {
-    On
-    Off
-}
-
 Enum CloudflareZoneWAFPackageSensitivity {
     High
     Medium
@@ -61,11 +51,6 @@ Enum CloudflareZoneWAFPackageActionMode {
     Simulate
     Block
     Challenge
-}
-
-Enum CloudflareZoneAlwaysUseHTTPSValue {
-    On
-    Off
 }
 #endregion Enums
 
@@ -469,7 +454,7 @@ Class CloudflareZonePageRuleAction {
 
 Class CloudflareZoneWAF {
     [String]$ID
-    [CloudflareZoneWAFValue]$Value
+    [String]$Value
     [Bool]$Editable
     [Nullable[DateTime]]$ModifiedOn
 
@@ -488,8 +473,8 @@ Class CloudflareZoneWAFRuleGroup {
     [Int]$RulesCount
     [Int]$ModifiedRulesCount
     [String]$PackageID
-    [CloudflareZoneWAFRuleGroupMode]$Mode
-    [CloudflareZoneWAFRuleGroupMode[]]$AllowedModes
+    [String]$Mode
+    [String[]]$AllowedModes
 
     CloudflareZoneWAFRuleGroup([Object]$object) {
         $this.ID = $object.id
@@ -525,13 +510,13 @@ Class CloudflareZoneWAFPackage {
     }
 }
 
-Class CloudflareZoneAlwaysUseHTTPS {
+Class CloudflareZoneSetting {
     [String]$ID
-    [CloudflareZoneAlwaysUseHTTPSValue]$Value
+    [Object]$Value
     [Nullable[DateTime]]$ModifiedOn
     [Bool]$Editable
 
-    CloudflareZoneAlwaysUseHTTPS([Object]$object) {
+    CloudflareZoneSetting([Object]$object) {
         $this.ID = $object.id
         $this.Value = $object.value
         $this.ModifiedOn = $object.modified_on
