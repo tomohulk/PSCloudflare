@@ -452,20 +452,6 @@ Class CloudflareZonePageRuleAction {
     }
 }
 
-Class CloudflareZoneWAF {
-    [String]$ID
-    [String]$Value
-    [Bool]$Editable
-    [Nullable[DateTime]]$ModifiedOn
-
-    CloudflareZoneWAF([Object]$object) {
-        $this.ID = $object.id
-        $this.Value = $object.value
-        $this.Editable = $object.editable
-        $this.ModifiedOn = $object.modified_on
-    }
-}
-
 Class CloudflareZoneWAFRuleGroup {
     [String]$ID
     [String]$Name
@@ -529,16 +515,53 @@ Class CloudflareZoneSetting {
 Class CloudflareZoneSettingIDBinding : System.Management.Automation.IValidateSetValuesGenerator {
     [String[]]GetValidValues() {
         $Global:CloudflareZoneSettingIDBinding = @{
-            AdvancedDDOS = 'advanced_ddos'
-            AlwaysOnline = 'always_online'
-            AlwaysUseHTTPS = 'always_use_https'
-            AutomaticHTTPSRewrites = 'automatic_https_rewrites'
-            OpportunisticOnion = 'opportunistic_onion'
-            OrangeToOrange = 'orange_to_orange'
-            BrowserCacheTTL = 'browser_cache_ttl'
-            BrowserCheck = 'browser_check'
-            CacheLevel = 'cache_level'
-            ChallengeTTL = 'challenge_ttl'
+            '0RTT' = '0rtt'
+            'AdvancedDDOS' = 'advanced_ddos'
+            'AlwaysOnline' = 'always_online'
+            'AlwaysUseHTTPS' = 'always_use_https'
+            'AutomaticHTTPSRewrite' = 'automatic_https_rewrites'
+            'AutomaticPlatformOptimization' = 'automatic_platform_optimization'
+            'Brotli' = 'brotli'
+            'BrowserCacheTTL' = 'browser_cache_ttl'
+            'BrowserCheck' = 'browser_check'
+            'CacheLevel' = 'cache_level'
+            'ChallengeTTL' = 'challenge_ttl'
+            'Chipers' = 'chipers'
+            'DevelopmentMode' = 'development_mode'
+            'EmailObfuscation' = 'email_obfuscation'
+            'H2Prioritization' = 'h2_prioritization'
+            'HotlinkProtection' = 'hotlink_protection'
+            'HTTP2' = 'http2'
+            'HTTP3' = 'http3'
+            'ImageResizing' = 'imaging_resizing'
+            'IPGeolocation' = 'ip_geolocation'
+            'IPv6' = 'ipv6'
+            'Minify' = 'minify'
+            'MobileRedirec' = 'mobile_redirect'
+            'Mirage' = 'mirage'
+            'OpportunisticOnion' = 'opportunistic_onion'
+            'OrangeToOrange' = 'orange_to_orange'
+            'OriginErrorPagePassThru' = 'origin_page_error_page_pass_thru'
+            'OpportunisticEncryption' = 'opportunistic_encryption'
+            'PrefetchPreload' = 'prefetch_preload'
+            'PrivacyPass' = 'privacy_pass'
+            'Polish' = 'polish'
+            'PseudoIPv4' = 'pseudo_ipv4'
+            'ResponseBuffering' = 'response_buffering'
+            'RocketLoader' = 'rocket_loader'
+            'SecurityHeader' = 'security_header'
+            'SecurityLevel' = 'security_level'
+            'ServerSideExclude' = 'server_side_exclude'
+            'SortQueryStringForCache' = 'sort_query_string_for_cache'
+            'SSL' = 'ssl'
+            'SSLRecommender' = 'ssl_recommender'
+            'MinimumTLSVersion' = 'min_tls_version'
+            'TLS1.3' = 'tls_1_3'
+            'TLSClientAuth' = 'tls_client_auth'
+            'TrueClientIPHeader' = 'true_client_ip_header'
+            'WAF' = 'waf'
+            'WebP' = 'webp'
+            'WebSocket' = 'websockets'
         }
 
         return ($Global:CloudflareZoneSettingIDBinding).Keys

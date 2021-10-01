@@ -16,7 +16,6 @@ Get-CloudflareZoneDNSRecord
 Get-CloudflareZonePageRule
 Get-CloudflareZoneSetting
 Get-CloudflareZoneSubscription
-Get-CloudflareZoneWAF
 Get-CloudflareZoneWAFPackage
 Get-CloudflareZoneWAFRuleGroup
 Import-CloudflareZoneDNSRecord
@@ -34,7 +33,6 @@ Set-CloudflareZoneDNSRecord
 Set-CloudflareZoneFirewallPackage
 Set-CloudflareZonePageRule
 Set-CloudflareZoneSetting
-Set-CloudflareZoneWAF
 Set-CloudflareZoneWAFPackage
 Set-CloudflareZoneWAFRuleGroup
 ```
@@ -63,6 +61,8 @@ PS C:\> New-CloudflareZoneDNSRecord -Zone $zone -Type A -Name 'blog.tomohulk.io'
 # Remove the zone.
 PS C:\> Remove-CloudflareZone -Zone $zone
 ```
+
+More examples can be found in /Docs/Examples.
 
 ---
 

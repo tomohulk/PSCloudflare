@@ -9,8 +9,8 @@ foreach ($zone in $zones) {
     }
 
     # Enabled Web Application Firewall.
-    if ((Get-CloudflareZoneWAF -Zone $zone).Value -eq 'Off') {
-        Set-CloudflareZoneWAF -Zone $zone -Value 'On'
+    if ((Get-CloudflareZoneSetting -Zone $zone -Setting WAF).Value -eq 'Off') {
+        Set-CloudflareZoneWAF -Zone $zone -Setting WAF -Value On
     }
 
     # Set the OWASP Package settings.
