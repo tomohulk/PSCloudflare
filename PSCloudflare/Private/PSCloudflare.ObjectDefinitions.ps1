@@ -515,12 +515,33 @@ Class CloudflareZoneSetting {
     [Object]$Value
     [Nullable[DateTime]]$ModifiedOn
     [Bool]$Editable
+    [Nullable[Int]]$TimeRemaining
 
     CloudflareZoneSetting([Object]$object) {
         $this.ID = $object.id
         $this.Value = $object.value
         $this.ModifiedOn = $object.modified_on
         $this.Editable = $object.editable
+        $this.TimeRemaining = $object.time_remaining
+    }
+}
+
+Class CloudflareZoneSettingIDBinding : System.Management.Automation.IValidateSetValuesGenerator {
+    [String[]]GetValidValues() {
+        $Global:CloudflareZoneSettingIDBinding = @{
+            AdvancedDDOS = 'advanced_ddos'
+            AlwaysOnline = 'always_online'
+            AlwaysUseHTTPS = 'always_use_https'
+            AutomaticHTTPSRewrites = 'automatic_https_rewrites'
+            OpportunisticOnion = 'opportunistic_onion'
+            OrangeToOrange = 'orange_to_orange'
+            BrowserCacheTTL = 'browser_cache_ttl'
+            BrowserCheck = 'browser_check'
+            CacheLevel = 'cache_level'
+            ChallengeTTL = 'challenge_ttl'
+        }
+
+        return ($Global:CloudflareZoneSettingIDBinding).Keys
     }
 }
 #endregion Classes

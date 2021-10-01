@@ -10,11 +10,11 @@ Export-CloudflareZoneDNSRecord
 Get-CloudflareAccount
 Get-CloudflareOrganization
 Get-CloudflareZone
-Get-CloudflareZoneAlwaysUseHTTPS
 Get-CloudflareZoneAvailablePlan
 Get-CloudflareZoneAvailableRatePlan
 Get-CloudflareZoneDNSRecord
 Get-CloudflareZonePageRule
+Get-CloudflareZoneSetting
 Get-CloudflareZoneSubscription
 Get-CloudflareZoneWAF
 Get-CloudflareZoneWAFPackage
@@ -30,10 +30,10 @@ Remove-CloudflareZone
 Remove-CloudflareZoneDNSRecord
 Remove-CloudflareZonePageRule
 Set-CloudflareZone
-Set-CloudflareZoneAlwaysUseHTTPS
 Set-CloudflareZoneDNSRecord
 Set-CloudflareZoneFirewallPackage
 Set-CloudflareZonePageRule
+Set-CloudflareZoneSetting
 Set-CloudflareZoneWAF
 Set-CloudflareZoneWAFPackage
 Set-CloudflareZoneWAFRuleGroup

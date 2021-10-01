@@ -1,4 +1,4 @@
-Function Get-CloudflareZoneAlwaysUseHTTPS {
+Function Get-CloudflareZoneSetting {
 
     [CmdletBinding()]
     [OutputType([CloudflareZoneSetting])]
@@ -8,13 +8,17 @@ Function Get-CloudflareZoneAlwaysUseHTTPS {
         [CloudflareZone]
         $Zone,
 
+        [Parameter(Mandatory = $true)]
+        [ValidateSet([CloudflareZoneSettingIDBinding])]
+        $Setting,
+
         [Parameter(HelpMessage = 'Returns the raw WebRequest response opposed to the Cloudflare .net object.')]
         [Switch]
         $RawResponse
     )
 
     Process {
-        $endpoint = '/zones/{0}/settings/always_use_https' -f $Zone.ID
+        $endpoint = '/zones/{0}/settings/{1}' -f $Zone.ID, $Global:CloudflareZoneSettingIDBinding.$Setting
 
         $response = Invoke-CloudflareAPI -Method Get -Endpoint $endpoint
 

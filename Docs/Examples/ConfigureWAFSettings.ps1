@@ -4,8 +4,8 @@ $zones = Get-CloudflareZone
 
 foreach ($zone in $zones) {
     # Enabled HTTP to HTTPS redirect.
-    if ((Get-CloudflareZoneAlwaysUseHTTPS -Zone $zone).Value -eq 'Off') {
-        Set-CloudflareZoneAlwaysUseHTTPS -Zone $zone -Value On
+    if ((Get-CloudflareZoneSetting -Zone $zone -Setting AllwaysUseHTTPS).Value -eq 'Off') {
+        Set-CloudflareZoneSetting -Zone $zone -Setting AllwaysUseHTTPS -Value On
     }
 
     # Enabled Web Application Firewall.
