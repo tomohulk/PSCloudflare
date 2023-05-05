@@ -545,6 +545,7 @@ Class CloudflareZoneSettingIDBinding : System.Management.Automation.IValidateSet
             'OpportunisticEncryption' = 'opportunistic_encryption'
             'PrefetchPreload' = 'prefetch_preload'
             'PrivacyPass' = 'privacy_pass'
+            'ProxyReadTimeout' = 'proxy_read_timeout'
             'Polish' = 'polish'
             'PseudoIPv4' = 'pseudo_ipv4'
             'ResponseBuffering' = 'response_buffering'
